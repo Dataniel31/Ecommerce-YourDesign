@@ -10,4 +10,8 @@ public class controller {
     public String MostrarInicio(){
         return "index";
     }
+    @GetMapping("/login")
+    public String MostrarLogin(){
+        return "login";
+    }
 }
