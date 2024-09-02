@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="~{plantilla::head}">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<h1>HOLA MUNDO</h1>
+<header th:replace="~{plantilla::header}">
+
+</header>
+
+
+
 <a href="login">Login</a>
+
+<footer th:replace="~{plantilla::footer}">
+
+</footer>
 </body>
 </html>
