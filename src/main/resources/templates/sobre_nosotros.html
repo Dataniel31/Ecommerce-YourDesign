@@ -1,10 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head th:replace="~{plantilla::head}">
     <meta charset="UTF-8">
-    <title>Title</title>
+
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="img/logo.png" alt="Logo" style="height: 40px;">
+        </a>
+    </div>
+</nav>
 
+<!-- Contenido -->
+<div class="container my-4">
+    <h1>Sobre Nosotros</h1>
+    <p>Última actualización: Septiembre 2024</p>
+
+    <h2>Quiénes Somos</h2>
+    <p>En <strong>You Design</strong>, somos un equipo apasionado por ofrecer moda de alta calidad con un toque único. Fundada en 2015, nuestra misión es brindar a nuestros clientes una experiencia de compra excepcional, ofreciendo prendas que combinan estilo y comodidad.</p>
+
+    <h2>Nuestra Misión</h2>
+    <p>En <strong>You Design</strong>, nos esforzamos por democratizar el acceso a la moda de alta calidad. Nuestro objetivo es proporcionar ropa que no solo sea moderna y elegante, sino también asequible y cómoda para todos. Creemos que cada persona merece sentirse especial y confiada en lo que lleva puesto.</p>
+
+    <h2>Nuestra Visión</h2>
+    <p>Aspiramos a ser un líder en el comercio de moda en línea, reconocidos por nuestra capacidad de anticipar y adaptarnos a las últimas tendencias. Queremos ser la primera opción para los amantes de la moda, destacándonos por nuestro compromiso con la sostenibilidad y la atención al detalle en cada diseño.</p>
+
+    <h2>Nuestro Equipo</h2>
+    <p>Contamos con un equipo diverso y talentoso que incluye diseñadores creativos, expertos en moda y profesionales de atención al cliente dedicados. Cada miembro de nuestro equipo aporta su experiencia y pasión por la moda, asegurando que cada prenda que ofrecemos cumpla con los más altos estándares de calidad.</p>
+
+    <h2>Contacta con Nosotros</h2>
+    <p>Para más información o si tienes alguna pregunta, no dudes en <a href="mailto:contacto@youdesign.com">enviarnos un correo electrónico</a> o <a href="tel:+51902658227">llamarnos al (+51) 902 658 227</a>. Estaremos encantados de ayudarte y responder cualquier consulta que puedas tener.</p>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3">
+    <div class="container">
+        <p class="mb-0">© 2024 You Design. Todos los derechos reservados.</p>
+    </div>
+</footer>
 </body>
 </html>
