@@ -3,18 +3,39 @@
 <head th:replace="~{plantilla::head}">
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/carrusel.css}">
 </head>
 <body>
 <header th:replace="~{plantilla::header}">
 
 </header>
+<div class="container-slider">
+    <div class="slider" id="slider">
+        <div class="slider_section">
+            <img class="slider_imagen" src="img/carrusel1.jpg">
+        </div>
+        <div class="slider_section">
+            <img class="slider_imagen" src="img/carrusel2.jpg">
+        </div>
+        <div class="slider_section">
+            <img class="slider_imagen" src="img/carrusel3.jpg">
+        </div>
+        <div class="slider_section">
+            <img class="slider_imagen" src="img/carrusel4.jpg">
+        </div>
+    </div>
+    <div class="slider_btn slider_btn-right" id="btn-right">&#62;</div>
+    <div class="slider_btn slider_btn-left" id="btn-left">&#60;</div>
+
+</div>
 
 
-
-<a href="login">Login</a>
+<a href="login">MyLogin</a>
 
 <footer th:replace="~{plantilla::footer}">
 
 </footer>
+
 </body>
 </html>
