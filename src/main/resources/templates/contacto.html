@@ -1,10 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head th:replace="~{plantilla::head}">
+
     <meta charset="UTF-8">
-    <title>Title</title>
+
 </head>
 <body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="img/logo.png" alt="Logo" style="height: 40px;">
+        </a>
+    </div>
+</nav>
 
+<!-- Contenido -->
+<div class="container my-4">
+    <h1>Contacto</h1>
+    <p>Última actualización: Septiembre 2024</p>
+
+    <h2>¿Cómo Podemos Ayudarte?</h2>
+    <p>Estamos aquí para ayudarte con cualquier pregunta o inquietud que puedas tener. Puedes ponerte en contacto con nosotros a través de los siguientes métodos:</p>
+
+    <div class="row">
+        <!-- Información de Contacto -->
+        <div class="col-md-6">
+            <h3>Información de Contacto</h3>
+            <ul class="list-unstyled">
+                <li><i class="bi bi-envelope"></i> <a href="mailto:contacto@youdesign.com">contacto@youdesign.com</a></li>
+                <li><i class="bi bi-telephone"></i> (+51) 902 658 227</li>
+                <li><i class="bi bi-geo-alt"></i> Las Fresias 128, Lima 15023, Perú</li>
+            </ul>
+        </div>
+
+        <!-- Formulario de Contacto -->
+        <div class="col-md-6">
+            <h3>Envíanos un Mensaje</h3>
+            <form action="#" method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="subject" class="form-label">Asunto</label>
+                    <input type="text" class="form-control" id="subject" name="subject" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Mensaje</label>
+                    <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <h2 class="mt-4">Visítanos</h2>
+    <p>Si prefieres visitarnos en persona, nuestra tienda está ubicada en:</p>
+    <address>
+        Las Fresias 128,<br>
+        Lima 15023,<br>
+        Perú
+    </address>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3">
+    <div class="container">
+        <p class="mb-0">© 2024 You Design. Todos los derechos reservados.</p>
+    </div>
+</footer>
 </body>
 </html>
