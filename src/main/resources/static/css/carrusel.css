@@ -1,0 +1,52 @@
+/* Estilos generales para el contenedor del carrusel */
+.container-slider {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* Estilos para el contenedor de las imágenes del carrusel */
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Estilos para cada sección de imagen en el carrusel */
+.slider_section {
+    min-width: 100%;
+}
+
+/* Estilos para las imágenes del carrusel */
+.slider_imagen {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Estilos para los botones de navegación */
+.slider_btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.slider_btn-right {
+    right: 10px;
+}
+
+.slider_btn-left {
+    left: 10px;
+}
+
+/* Estilos para hacer los botones más visibles al pasar sobre ellos */
+.slider_btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
