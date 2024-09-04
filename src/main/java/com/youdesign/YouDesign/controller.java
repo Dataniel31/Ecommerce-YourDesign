@@ -17,6 +17,11 @@ public class controller {
         return "login";
     }
 
+    @GetMapping("/registrar")
+    public String Registro( ) {
+        return "registrar";
+    }
+
     @GetMapping("/lreclamaciones")
     public String lreclamaciones(Model model) {
         model.addAttribute("pageTitle", "Libro de Reclamaciones");
