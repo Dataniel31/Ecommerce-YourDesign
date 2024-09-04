@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{plantilla::head}">
 
     <meta charset="UTF-8">
@@ -7,13 +7,9 @@
 </head>
 <body>
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="/">
-            <img src="img/logo.png" alt="Logo" style="height: 40px;">
-        </a>
-    </div>
-</nav>
+<header th:replace="~{plantilla::header}">
+
+</header>
 
 <!-- Contenido -->
 <div class="container my-4">
@@ -21,14 +17,16 @@
     <p>Última actualización: Septiembre 2024</p>
 
     <h2>¿Cómo Podemos Ayudarte?</h2>
-    <p>Estamos aquí para ayudarte con cualquier pregunta o inquietud que puedas tener. Puedes ponerte en contacto con nosotros a través de los siguientes métodos:</p>
+    <p>Estamos aquí para ayudarte con cualquier pregunta o inquietud que puedas tener. Puedes ponerte en contacto con
+        nosotros a través de los siguientes métodos:</p>
 
     <div class="row">
         <!-- Información de Contacto -->
         <div class="col-md-6">
             <h3>Información de Contacto</h3>
             <ul class="list-unstyled">
-                <li><i class="bi bi-envelope"></i> <a href="mailto:contacto@youdesign.com">contacto@youdesign.com</a></li>
+                <li><i class="bi bi-envelope"></i> <a href="mailto:contacto@youdesign.com">contacto@youdesign.com</a>
+                </li>
                 <li><i class="bi bi-telephone"></i> (+51) 902 658 227</li>
                 <li><i class="bi bi-geo-alt"></i> Las Fresias 128, Lima 15023, Perú</li>
             </ul>
