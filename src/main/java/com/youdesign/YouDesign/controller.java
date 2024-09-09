@@ -46,6 +46,12 @@ public class controller {
         return "sobre_nosotros";
     }
 
+    @GetMapping("/productos")
+    public String productos(Model model) {
+        model.addAttribute("pageTitle", "Produtos");
+        return "productos";
+    }
+
     @GetMapping("/contacto")
     public String contacto(Model model) {
         model.addAttribute("pageTitle", "Contactanos");
