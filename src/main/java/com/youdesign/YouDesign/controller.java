@@ -46,10 +46,10 @@ public class controller {
         return "sobre_nosotros";
     }
 
-    @GetMapping("/productos")
+    @GetMapping("/categoria")
     public String productos(Model model) {
-        model.addAttribute("pageTitle", "Produtos");
-        return "productos";
+        model.addAttribute("pageTitle", "Categorias");
+        return "categoria";
     }
 
     @GetMapping("/contacto")

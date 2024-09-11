@@ -34,6 +34,176 @@
                 <span class="visually-hidden">Next</span>
             </button>
         </div>
+        <section class="category-section text-center">
+            <div class="container">
+                <h2 class="mb-5">¿Qué producto deseas comprar?</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-2 category-item">
+                        <button class="btn category-btn">
+                            <img src="/img/mujer-cat.png" alt="Mujer" class="category-img">
+                            <p>Mujer</p>
+                        </button>
+                    </div>
+                    <div class="col-md-2 category-item">
+                        <button class="btn category-btn">
+                            <img src="/img/hombre-cat.png" alt="Hombre" class="category-img">
+                            <p>Hombre</p>
+                        </button>
+                    </div>
+                    <div class="col-md-2 category-item">
+                        <button class="btn category-btn">
+                            <img src="/img/infantil-cat.png" alt="Infantil" class="category-img">
+                            <p>Infantil</p>
+                        </button>
+                    </div>
+                    <div class="col-md-2 category-item">
+                        <button class="btn category-btn">
+                            <img src="/img/botines-cat.png" alt="Botines" class="category-img">
+                            <p>Botines</p>
+                        </button>
+                    </div>
+                    <div class="col-md-2 category-item">
+                        <button class="btn category-btn">
+                            <img src="/img/zapatillas-cat.png" alt="Zapatillas" class="category-img">
+                            <p>Zapatillas</p>
+                        </button>
+                    </div>
+                    <div class="col-md-2 category-item">
+                        <button class="btn category-btn">
+                            <img src="/img/accesorio-cat.png" alt="Accesorios" class="category-img">
+                            <p>Accesorios</p>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="products-section text-center">
+            <div class="container">
+                <h2 class="mb-5">Nuestros Productos</h2>
+                <div class="row justify-content-center">
+                    <div class="col-12 mb-5">
+                        <div class="cart-visualization">
+                            <h3>Productos Comprados Recientemente</h3>
+                            <ul id="recent-purchases">
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-md-3 product-item">
+                            <button class="btn product-btn" onclick="addToCart('Producto 1', 25.99)">
+                                <img src="/img/producto1.png" alt="Producto 1" class="product-img">
+                                <p>Producto 1</p>
+                                <p class="price">S/25.99</p>
+                            </button>
+                        </div>
+                        <div class="col-md-3 product-item">
+                            <button class="btn product-btn" onclick="addToCart('Producto 2', 30.50)">
+                                <img src="/img/producto2.png" alt="Producto 2" class="product-img">
+                                <p>Producto 2</p>
+                                <p class="price">S/30.50</p>
+                            </button>
+                        </div>
+                        <div class="col-md-3 product-item">
+                            <button class="btn product-btn" onclick="addToCart('Producto 3', 19.99)">
+                                <img src="/img/producto3.png" alt="Producto 3" class="product-img">
+                                <p>Producto 3</p>
+                                <p class="price">S/19.99</p>
+                            </button>
+                        </div>
+                        <div class="col-md-3 product-item">
+                            <button class="btn product-btn" onclick="addToCart('Producto 4', 45.00)">
+                                <img src="/img/producto4.png" alt="Producto 4" class="product-img">
+                                <p>Producto 4</p>
+                                <p class="price">$S/45.00</p>
+                            </button>
+                        </div>
+                        <div class="col-md-3 product-item">
+                            <button class="btn product-btn" onclick="addToCart('Producto 5', 27.50)">
+                                <img src="/img/producto5.png" alt="Producto 5" class="product-img">
+                                <p>Producto 5</p>
+                                <p class="price">S/27.50</p>
+                            </button>
+                        </div>
+                        <div class="col-md-3 product-item">
+                            <button class="btn product-btn" onclick="addToCart('Producto 6', 22.99)">
+                                <img src="/img/producto6.png" alt="Producto 6" class="product-img">
+                                <p>Producto 6</p>
+                                <p class="price">S/22.99</p>
+                            </button>
+                        </div>
+                        <div class="col-md-3 product-item">
+                            <button class="btn product-btn" onclick="addToCart('Producto 7', 34.99)">
+                                <img src="/img/producto7.png" alt="Producto 7" class="product-img">
+                                <p>Producto 7</p>
+                                <p class="price">S/34.99</p>
+                            </button>
+                        </div>
+                        <div class="col-md-3 product-item">
+                            <button class="btn product-btn" onclick="addToCart('Producto 8', 40.99)">
+                                <img src="/img/producto8.png" alt="Producto 8" class="product-img">
+                                <p>Producto 8</p>
+                                <p class="price">S/40.99</p>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="carousel-marcas">
+            <div class="container">
+                <h2 class="mb-5">Nuestras Marcas</h2>
+                <div id="brandsCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="row text-center">
+                                <div class="col-3">
+                                    <img src="/img/fondoropa.jpg" class="d-block w-100" alt="Marca 1">
+                                </div>
+                                <div class="col-3">
+                                    <img src="/img/fondoropa.jpg" class="d-block w-100" alt="Marca 2">
+                                </div>
+                                <div class="col-3">
+                                    <img src="/img/fondoropa.jpg" class="d-block w-100" alt="Marca 3">
+                                </div>
+                                <div class="col-3">
+                                    <img src="/img/fondoropa.jpg" class="d-block w-100" alt="Marca 4">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="row text-center">
+                                <div class="col-3">
+                                    <img src="/img/fondoropa.jpg" class="d-block w-100" alt="Marca 5">
+                                </div>
+                                <div class="col-3">
+                                    <img src="/img/fondoropa.jpg" class="d-block w-100" alt="Marca 6">
+                                </div>
+                                <div class="col-3">
+                                    <img src="/img/fondoropa.jpg" class="d-block w-100" alt="Marca 7">
+                                </div>
+                                <div class="col-3">
+                                    <img src="/img/fondoropa.jpg" class="d-block w-100" alt="Marca 8">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#brandsCarousel"
+                            data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#brandsCarousel"
+                            data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </section>
     </div>
 
     <footer th:replace="~{plantilla::footer}">
