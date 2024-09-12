@@ -46,15 +46,40 @@ public class controller {
         return "sobre_nosotros";
     }
 
-    @GetMapping("/categoria")
-    public String categoria(Model model) {
-        model.addAttribute("pageTitle", "Categorias");
-        return "categoria";
-    }
     @GetMapping("/producto")
-    public String productos(Model model) {
+    public String producto(Model model) {
         model.addAttribute("pageTitle", "Productos");
         return "producto";
+    }
+    @GetMapping("/cat-accesorios")
+    public String accesorios(Model model) {
+        model.addAttribute("pageTitle", "Productos");
+        return "cat-accesorios";
+    }
+    @GetMapping("/cat-botines")
+    public String botines(Model model) {
+        model.addAttribute("pageTitle", "Productos");
+        return "cat-botines";
+    }
+    @GetMapping("/cat-hombre")
+    public String hombre(Model model) {
+        model.addAttribute("pageTitle", "Productos");
+        return "cat-hombre";
+    }
+    @GetMapping("/cat-infantil")
+    public String mujer(Model model) {
+        model.addAttribute("pageTitle", "Productos");
+        return "cat-infantil";
+    }
+    @GetMapping("/cat-mujer")
+    public String zapatillas(Model model) {
+        model.addAttribute("pageTitle", "Productos");
+        return "cat-mujer";
+    }
+    @GetMapping("/cat-zapatillas")
+    public String infantil(Model model) {
+        model.addAttribute("pageTitle", "Productos");
+        return "cat-zapatillas";
     }
 
     @GetMapping("/contacto")
