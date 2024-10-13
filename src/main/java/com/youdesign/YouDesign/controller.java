@@ -12,15 +12,6 @@ public class controller {
         model.addAttribute("pageTitle", "Inicio");
         return "index";
     }
-    @GetMapping("/login")
-    public String login( ) {
-        return "login";
-    }
-
-    @GetMapping("/registrar")
-    public String Registro( ) {
-        return "registrar";
-    }
 
     @GetMapping("/lreclamaciones")
     public String lreclamaciones(Model model) {

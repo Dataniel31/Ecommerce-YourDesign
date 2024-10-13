@@ -45,7 +45,7 @@ body {
     width: 180px;
 }
 
-.box input[type="button"] {
+.box button {
     border: 0;
     display: block;
     background: none;
@@ -59,7 +59,7 @@ body {
     transition: .25s;
 }
 
-.box input[type="button"]:hover {
+.box button:hover {
     background: #2ecc71;
     color: black;
     cursor: pointer;

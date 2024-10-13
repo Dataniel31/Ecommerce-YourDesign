@@ -9,15 +9,20 @@
 
 <body>
 <button class="back-button" onclick="history.back()"><img src="img/volver.png" width="50" height="50"></button>
-<form class="box" id="box">
+<div th:if="${param.exito}">
+</div>
+<form th:action="@{/registrar}" method="post" th:object="${usuario}" class="box" id="box">
     <h1>Registro</h1>
-    <input type="text" placeholder="Ingrese su usuario" id="regname" />
-    <input type="password" placeholder="Ingrese su contraseña" id="regpass" />
-    <input type="password" placeholder="Confirme su contraseña" id="regconfirpass" />
-    <input type="button" value="Registrar" id="btnregistrar" />
+    <input type="text" placeholder="Ingrese su nombre" id="nombre" th:field="*{nombre}" required autofocus="autofocus"/>
+    <input type="text" placeholder="Ingrese su direccion" id="direccion" th:field="*{direccion}" required autofocus="autofocus"/>
+    <input type="text" placeholder="Ingrese su email" id="email" th:field="*{email}" required autofocus="autofocus"/>
+    <input type="text" placeholder="Ingrese su usuario" id="usuario" th:field="*{usuario}" required autofocus="autofocus"/>
+    <input type="password" placeholder="Ingrese su contraseña" id="password" th:field="*{password}" required autofocus="autofocus">/>
+    <button type="submit" id="btnregistrar">Registrar</button>
 
     <h3>¿Ya tienes una cuenta? <a href="login">Ingresa aquí</a></h3>
 </form>
+
 </body>
 
 </html>
