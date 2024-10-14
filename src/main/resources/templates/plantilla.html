@@ -61,11 +61,9 @@
                             <a class="btn btn-outline-light" th:href="@{/login}">Login</a>
                             <a class="btn btn-outline-light" th:href="@{/registrar}">Registrar</a>
                         </li>
-                    </ul>
-
-                    <ul class="navbar-nav ms-auto">
-                        <li sec:authorize="isAuthenticated()" class="nav-item"><a class="btn btn-outline-light" th:href="@{/logout}">Cerrar
-                            sesión</a></li>
+                        <li sec:authorize="isAuthenticated()" class="nav-item">
+                            <a class="btn btn-outline-light" th:href="@{/logout}">Cerrar sesión</a>
+                        </li>
                     </ul>
                 </div>
             </div>
