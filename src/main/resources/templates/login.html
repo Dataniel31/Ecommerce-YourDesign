@@ -9,11 +9,17 @@
 
 <body>
 <button class="back-button" onclick="history.back()"><img src="img/volver.png" width="50" height="50"></button>
-<form class="box" id="box">
+<form class="box" id="box" th:action="@{/login}" method="post">
     <h1>Login</h1>
-    <input type="text" placeholder="Ingrese su usuario" id="name" />
-    <input type="password" placeholder="Ingrese su contraseña" id="pass" />
-    <input type="button" value="Ingresar" id="send" />
+    <div th:if="${param.error}">
+        <div>Usuario o contraseña inválido</div>
+    </div>
+    <div th:if="${param.logout}">
+        <div>Ha cerrado sesión exitosamente</div>
+    </div>
+    <input type="text" placeholder="Ingrese su email" name="username" id="username" required autofocus="autofocus"/>
+    <input type="password" placeholder="Ingrese su contraseña" name="password" id="password" required autofocus="autofocus"/>
+    <button type="submit" value="Ingresar" id="login-submit">Ingresar</button>
 
     <h3>¿No tienes cuenta? <a href="registrar">Registrate aquí</a></h3>
 </form>

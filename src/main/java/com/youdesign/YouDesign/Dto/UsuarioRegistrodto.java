@@ -5,7 +5,6 @@ public class UsuarioRegistrodto {
     private String nombre;
     private String direccion;
     private String email;
-    private String usuario;
     private String password;
 
     public Long getId_usuario() {
@@ -40,13 +39,6 @@ public class UsuarioRegistrodto {
         this.email = email;
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
 
     public String getPassword() {
         return password;
@@ -56,20 +48,18 @@ public class UsuarioRegistrodto {
         this.password = password;
     }
 
-    public UsuarioRegistrodto(Long id_usuario, String nombre, String direccion, String email, String usuario, String password) {
+    public UsuarioRegistrodto(Long id_usuario, String nombre, String direccion, String email, String password) {
         this.id_usuario = id_usuario;
         this.nombre = nombre;
         this.direccion = direccion;
         this.email = email;
-        this.usuario = usuario;
         this.password = password;
     }
 
-    public UsuarioRegistrodto(String nombre, String direccion, String email, String usuario, String password) {
+    public UsuarioRegistrodto(String nombre, String direccion, String email, String password) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.email = email;
-        this.usuario = usuario;
         this.password = password;
     }
 

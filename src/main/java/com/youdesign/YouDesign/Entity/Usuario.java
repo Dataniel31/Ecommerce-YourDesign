@@ -18,7 +18,6 @@ public class Usuario {
     @Column(name = "direccion")
     private String direccion;
     private String email;
-    private String usuario;
     private String password;
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     @JoinTable(
@@ -60,14 +59,6 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -84,21 +75,19 @@ public class Usuario {
         this.roles = roles;
     }
 
-    public Usuario(Long id_usuario, String nombre, String direccion, String email, String usuario, String password, Collection<Rol> roles) {
+    public Usuario(Long id_usuario, String nombre, String direccion, String email, String password, Collection<Rol> roles) {
         this.id_usuario = id_usuario;
         this.nombre = nombre;
         this.direccion = direccion;
         this.email = email;
-        this.usuario = usuario;
         this.password = password;
         this.roles = roles;
     }
 
-    public Usuario(String nombre, String direccion, String email, String usuario, String password, Collection<Rol> roles) {
+    public Usuario(String nombre, String direccion, String email, String password, Collection<Rol> roles) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.email = email;
-        this.usuario = usuario;
         this.password = password;
         this.roles = roles;
     }
