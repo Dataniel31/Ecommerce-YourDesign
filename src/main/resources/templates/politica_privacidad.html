@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{plantilla::head}">
     <meta charset="UTF-8">
+
 </head>
-<body>
-<!-- Navbar -->
+<body class="body-fondo">
+<header th:replace="~{plantilla::header}">
+
+</header>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="/">
@@ -15,7 +18,8 @@
 
 <!-- Contenido -->
 <div class="container my-4">
-    <h1>Política de Privacidad</h1>
+    <h1 class="text-center">Política de Privacidad</h1>
+    <hr>
     <p>Última actualización: 1 de septiembre de 2024</p>
 
     <h2>1. Introducción</h2>
