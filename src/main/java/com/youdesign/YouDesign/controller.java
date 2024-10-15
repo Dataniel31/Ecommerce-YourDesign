@@ -79,10 +79,5 @@ public class controller {
         model.addAttribute("pageTitle", "Login - Dashboard");
         return "admin/adlogin";
     }
-    @GetMapping("/dashboard")
-    public String dashboard(Model model) {
-        model.addAttribute("pageTitle", "Dashboard");
-        return "admin/dashboard";
-    }
 
 }
