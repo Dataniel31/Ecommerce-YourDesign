@@ -6,6 +6,7 @@ public class UsuarioRegistrodto {
     private String direccion;
     private String email;
     private String password;
+    private Long rol_id;
 
     public Long getId_usuario() {
         return id_usuario;
@@ -48,6 +49,14 @@ public class UsuarioRegistrodto {
         this.password = password;
     }
 
+    public Long getRol_id() {
+        return rol_id;
+    }
+
+    public void setRol_id(Long rol_id) {
+        this.rol_id = rol_id;
+    }
+
     public UsuarioRegistrodto(Long id_usuario, String nombre, String direccion, String email, String password) {
         this.id_usuario = id_usuario;
         this.nombre = nombre;
@@ -61,6 +70,14 @@ public class UsuarioRegistrodto {
         this.direccion = direccion;
         this.email = email;
         this.password = password;
+    }
+
+    public UsuarioRegistrodto(String nombre, String direccion, String email, String password, Long rol_id) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.email = email;
+        this.password = password;
+        this.rol_id = rol_id;
     }
 
     public UsuarioRegistrodto(String email) {

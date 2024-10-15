@@ -10,6 +10,8 @@ public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_rol;
+
+    @Column(name = "nombre", unique = true)
     private String nombre;
 
     public String getNombre() {

@@ -13,19 +13,22 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_usuario;
+
     @Column(name = "nombre")
     private String nombre;
+
     @Column(name = "direccion")
     private String direccion;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "password")
     private String password;
-    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "usuarios_roles",
-            joinColumns = @JoinColumn(name = "usuario_id",referencedColumnName = "id_usuario"),
-            inverseJoinColumns = @JoinColumn(name = "rol_id",referencedColumnName = "id_rol")
-    )
-    private Collection<Rol> roles;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "rol_id", referencedColumnName = "id_rol")
+    private Rol rol;
 
     public Long getId_usuario() {
         return id_usuario;
@@ -67,29 +70,29 @@ public class Usuario {
         this.password = password;
     }
 
-    public Collection<Rol> getRoles() {
-        return roles;
+    public Rol getRol() {
+        return rol;
     }
 
-    public void setRoles(Collection<Rol> roles) {
-        this.roles = roles;
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 
-    public Usuario(Long id_usuario, String nombre, String direccion, String email, String password, Collection<Rol> roles) {
+    public Usuario(Long id_usuario, String nombre, String direccion, String email, String password, Rol rol) {
         this.id_usuario = id_usuario;
         this.nombre = nombre;
         this.direccion = direccion;
         this.email = email;
         this.password = password;
-        this.roles = roles;
+        this.rol = rol;
     }
 
-    public Usuario(String nombre, String direccion, String email, String password, Collection<Rol> roles) {
+    public Usuario(String nombre, String direccion, String email, String password, Rol rol) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.email = email;
         this.password = password;
-        this.roles = roles;
+        this.rol = rol;
     }
 
     public Usuario() {

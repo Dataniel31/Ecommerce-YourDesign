@@ -49,7 +49,7 @@ public class UsuarioServiceImpl implements UsuarioService {
                 registrodto.getDireccion(),
                 registrodto.getEmail(),
                 passwordEncoder.encode(registrodto.getPassword()),
-                Arrays.asList(rolUsuario)
+                rolUsuario
         );
         return usuarioRepository.save(usuario);
     }
@@ -60,12 +60,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         if (usuario == null) {
             throw new UsernameNotFoundException("Usuario o password inválidos");
         }
-        return new User(usuario.getEmail(), usuario.getPassword(), mapearAutoridadesRoles(usuario.getRoles()));
-    }
-
-    private Collection<? extends GrantedAuthority> mapearAutoridadesRoles(Collection<Rol> roles) {
-        return roles.stream()
-                .map(rol -> new SimpleGrantedAuthority(rol.getNombre()))
-                .collect(Collectors.toList());
+        return new User(usuario.getEmail(), usuario.getPassword(),
+                Arrays.asList(new SimpleGrantedAuthority(usuario.getRol().getNombre())));
     }
 }
