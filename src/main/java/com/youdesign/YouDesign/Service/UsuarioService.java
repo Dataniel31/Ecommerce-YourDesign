@@ -5,5 +5,5 @@ import com.youdesign.YouDesign.Entity.Usuario;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UsuarioService extends UserDetailsService {
-    public Usuario save(UsuarioRegistrodto registrodto);
+    Usuario save(UsuarioRegistrodto registrodto);
 }
