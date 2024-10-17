@@ -1,20 +1,15 @@
-package com.youdesign.YouDesign.Entity;
+package com.youdesign.YouDesign.Dto;
 
-import jakarta.persistence.*;
+import org.springframework.web.multipart.MultipartFile;
 
+public class ProductoDTO {
 
-@Entity
-@Table(name = "productos")
-public class Productos {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_producto;
     private String nombre_prod;
     private String marca;
     private double precio;
     private int stock;
-    private String imagen;
+    private MultipartFile imagen;
 
 
     public Long getId_producto() {
@@ -24,7 +19,6 @@ public class Productos {
     public void setId_producto(Long id_producto) {
         this.id_producto = id_producto;
     }
-
 
     public String getNombre_prod() {
         return nombre_prod;
@@ -58,11 +52,11 @@ public class Productos {
         this.stock = stock;
     }
 
-    public String getImagen() {
+    public MultipartFile getImagen() {
         return imagen;
     }
 
-    public void setImagen(String imagen) {
+    public void setImagen(MultipartFile imagen) {
         this.imagen = imagen;
     }
 }

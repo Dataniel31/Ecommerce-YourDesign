@@ -33,7 +33,8 @@ public class SecurityConfiguration {
         http
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/registrar**", "/js/**", "/css/**", "/img/**","/","/nosotros","/contacto").permitAll()
+                                .requestMatchers("/registrar**", "/js/**", "/css/**", "/img/**", "/", "/nosotros", "/contacto").permitAll()
+                                .requestMatchers("/admin/productos/**", "/js/**", "/css/**", "/img/**", "/", "/nosotros", "/contacto").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->
@@ -48,7 +49,11 @@ public class SecurityConfiguration {
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                 .logoutSuccessUrl("/login?logout")
                                 .permitAll()
-                );
+                )
+                // Configuración correcta de CSRF para versiones más recientes
+                .csrf(csrf -> csrf.disable());  // Forma recomendada en Spring Security 6.1+
+
         return http.build();
     }
+
 }
