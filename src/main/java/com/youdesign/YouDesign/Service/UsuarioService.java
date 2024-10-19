@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface UsuarioService extends UserDetailsService {
     Usuario save(UsuarioRegistrodto registrodto);
     Usuario saveUsuario(UsuarioRegistrodto registrodto, Rol rol);
-    Usuario updateUsuario(UsuarioRegistrodto registrodto, Rol rol);
+    Usuario updateUsuario(Long id ,UsuarioRegistrodto registrodto, Rol rol);
     void deleteUsuario(Long id_usuario);
     Usuario findById(Long id_usuario);
     List<Usuario> findAll();

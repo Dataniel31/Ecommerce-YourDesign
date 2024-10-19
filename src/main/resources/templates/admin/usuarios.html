@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/dashboard}">
 <head th:replace="~{admin/dashboard::head}">
     <meta charset="UTF-8">
 </head>
 <body>
 <header th:replace="~{admin/dashboard::header}"></header>
 
-<div class="container-fluid">
+<div class="container-fluid" layout:fragment="page-content">
     <nav class="navbar navbar-light bg-light m-2">
         <h4 class="ps-3"><i class="fa-solid fa-gauge me-2"></i>Usuarios</h4>
         <div class="col-3 align-self-center">
@@ -38,7 +38,7 @@
                 <td th:text="${usuario.password}"></td>
                 <td th:text="${usuario.rol.nombre}"></td>
                 <td>
-                    <a type="button" class="btn btn-info btnEditar" data-bs-toggle="modal2" data-bs-target="#exampleModal2"
+                    <a type="button" class="btn btn-info btnEditar" data-bs-toggle="modal" data-bs-target="#exampleModal"
                             th:data-id_usuario="${usuario.id_usuario}"
                             th:data-nombre="${usuario.nombre}"
                             th:data-direccion="${usuario.direccion}"
@@ -59,11 +59,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form th:action="@{/admin/usuarios}" th:object="${usuario}" method="post">
+                    <form id="usuarioForm" th:object="${usuario}">
                         <div class="row">
                             <div class="col-6">
                                 <label>ID de Usuario</label>
-                                <input type="text" id="id_usuario" name="id_usuario" class="form-control" value="0" readonly="true">
+                                <input type="text" id="id_usuario" name="id_usuario" th:value="${usuario.id_usuario}" class="form-control" value="0" readonly="true">
                             </div>
                             <div class="col-6">
                                 <label>Nombre de Usuario</label>
@@ -104,65 +104,13 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel2">Registrar de Usuario</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form th:action="@{/admin/usuarios/{id}(id=${usuario.id_usuario})}" th:object="${usuario}" method="post">
-                        <div class="row">
-                            <div class="col-6">
-                                <label>ID de Usuario</label>
-                                <input type="text" id="id_usuarioe" name="id_usuarioe" class="form-control" value="0" readonly="true">
-                            </div>
-                            <div class="col-6">
-                                <label>Nombre de Usuario</label>
-                                <input type="text" class="form-control" id="nombree" name="nombree" th:field="*{nombre}" required>
-                            </div>
-                            <div class="col-6">
-                                <label>Dirección del Usuario</label>
-                                <input type="text" class="form-control" id="direccione" name="direccione" th:field="*{direccion}" required>
-                            </div>
-                            <div class="col-6">
-                                <label>Email del Usuario</label>
-                                <input type="email" class="form-control" id="emaile" name="emaile" th:field="*{email}" required>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <label>Password</label>
-                                <input type="password" class="form-control" id="passworde" name="passworde" th:field="*{password}" required>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label for="rol" class="form-label">Rol</label>
-                            <select class="form-select" id="role" name="role" th:field="*{rol}" required>
-                                <option value="" disabled selected>Selecciona un rol</option>
-                                <option value="Administrador">Administrador</option>
-                                <option value="Usuario">Usuario</option>
-                            </select>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-12">
-                                <a href="#" class="btn btn-success">Editar</a>
-                                <button type="button" class="btn btn-info" data-bs-dismiss="modal">Cancelar</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
-<script th:src="@{/js/usuario.js}"></script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+<th:block layout:fragment="page-scripts">
+    <script th:src="@{/js/usuario.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+</th:block>
 </body>
 </html>

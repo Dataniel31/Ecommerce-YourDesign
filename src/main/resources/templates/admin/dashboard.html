@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head th:fragment="head">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,9 +41,12 @@
   </nav>
 
 </header>
-<div class="container">
+<div class="container" layout:fragment="page-content">
 
 </div>
 
+<th:block layout:fragment="page-scripts">
+
+</th:block>
 </body>
 </html>

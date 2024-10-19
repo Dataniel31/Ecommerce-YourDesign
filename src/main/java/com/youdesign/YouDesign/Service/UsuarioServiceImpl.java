@@ -63,6 +63,7 @@ public class UsuarioServiceImpl implements UsuarioService {
             rolUsuario = new Rol(rol.getNombre());
             rolRepository.save(rolUsuario);
         }
+
         Usuario usuario = new Usuario(
                 registrodto.getNombre(),
                 registrodto.getDireccion(),
@@ -74,20 +75,19 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario updateUsuario(UsuarioRegistrodto registrodto, Rol rol) {
-        Rol rolUsuario = rolRepository.findByNombre(rol.getNombre());
-        if (rolUsuario == null) {
-            rolUsuario = new Rol(rol.getNombre());
-            rolRepository.save(rolUsuario);
+    public Usuario updateUsuario(Long id ,UsuarioRegistrodto registrodto, Rol rol) {
+        Optional<Usuario> usuarioOpt = usuarioRepository.findById(id);
+        if (usuarioOpt.isPresent()) {
+            Usuario usuario = usuarioOpt.get();
+            usuario.setNombre(registrodto.getNombre());
+            usuario.setDireccion(registrodto.getDireccion());
+            usuario.setEmail(registrodto.getEmail());
+            usuario.setPassword(passwordEncoder.encode(registrodto.getPassword()));
+            usuario.setRol(rol);
+            return usuarioRepository.save(usuario);
+        } else {
+            throw new RuntimeException("Usuario no encontrado");
         }
-        Usuario usuario = new Usuario(
-                registrodto.getNombre(),
-                registrodto.getDireccion(),
-                registrodto.getEmail(),
-                passwordEncoder.encode(registrodto.getPassword()),
-                rolUsuario
-        );
-        return usuarioRepository.save(usuario);
     }
 
     @Override

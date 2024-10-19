@@ -45,6 +45,17 @@ public class UsuarioAdminController {
         return "redirect:/admin/usuarios";
     }
 
+    @PostMapping("/editar/{id}")
+    public String editarUsuario(@PathVariable Long id, @ModelAttribute("usuario") UsuarioRegistrodto registrodto) {
+        Rol rolUsuario = rolRepository.findByNombre(registrodto.getRol());
+        if (rolUsuario == null) {
+            rolUsuario = new Rol(registrodto.getRol());
+            rolRepository.save(rolUsuario);
+        }
+        usuarioService.updateUsuario(id, registrodto, rolUsuario);
+        return "redirect:/admin/usuarios";
+    }
+
     @GetMapping("/{id}")
     public String eliminarUsuario(@PathVariable Long id){
         usuarioService.deleteUsuario(id);

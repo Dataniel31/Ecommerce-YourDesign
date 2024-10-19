@@ -1,5 +1,8 @@
 package com.youdesign.YouDesign.Dto;
 
+import lombok.Data;
+
+@Data
 public class UsuarioRegistrodto {
     private Long id_usuario;
     private String nombre;
