@@ -1,26 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/dashboard}">
 <head th:replace="~{admin/dashboard::head}">
   <meta charset="UTF-8">
 </head>
 <body>
 <header th:replace="~{admin/dashboard::header}"></header>
 
-<div class="container mt-4">
+<div class="container-fluid" layout:fragment="page-content">
+  <nav class="navbar navbar-light bg-light m-2">
+    <h4 class="ps-3"><i class="fa-solid fa-gauge me-2"></i>Productos</h4>
+    <div class="col-3 align-self-center">
+      <div class="d-grid gap-2">
+        <button type="button" class="btn btn-success btnAgregar" data-bs-toggle="modal" data-bs-target="#modalAgregar">Agregar</button>
+      </div>
+    </div>
+  </nav>
   <div class="row">
     <div class="col-md-12">
-      <h2 class="mb-4">Productos</h2>
-      <button class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalAgregar">Agregar Producto</button>
-
       <div class="modal fade" id="modalAgregar" tabindex="-1" aria-labelledby="modalAgregarLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
-            <form action="/admin/productos" method="post" enctype="multipart/form-data">
+            <form id="productoForm" enctype="multipart/form-data">
               <div class="modal-header">
                 <h5 class="modal-title" id="modalAgregarLabel">Agregar Producto</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
+                <div class="form-group mb-3">
+                  <label>ID de Producto</label>
+                  <input type="text" id="id_producto" name="id_producto" class="form-control" value="0" readonly="true">
+                </div>
                 <div class="form-group mb-3">
                   <label for="nombre_prod">Nombre</label>
                   <input type="text" class="form-control" name="nombre_prod" id="nombre_prod" required>
@@ -43,93 +52,55 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Guardar</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-secondary">Guardar</button>
+                <button type="button" class="btn btn-info" data-bs-dismiss="modal">Cancelar</button>
               </div>
             </form>
           </div>
         </div>
       </div>
-
-      <table class="table table-striped table-hover">
-        <thead class="table-dark">
-        <tr>
-          <th>ID</th>
-          <th>Nombre</th>
-          <th>Marca</th>
-          <th>Precio</th>
-          <th>Stock</th>
-          <th>Imagen</th>
-          <th>Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="producto : ${productos}">
-          <td th:text="${producto.id_producto}"></td>
-          <td th:text="${producto.nombre_prod}"></td>
-          <td th:text="${producto.marca}"></td>
-          <td>S/ <span th:text="${producto.precio}"></span></td>
-          <td><span th:text="${producto.stock}"></span> unidades</td>
-          <td><img th:src="@{'/img/' + ${producto.imagen}}" width="100"></td>
-          <td>
-            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditar">
-              Editar
-            </button>
-            <form th:action="@{/admin/productos/delete/{id}(id=${producto.id_producto})}" method="post" style="display:inline;">
-              <button type="submit" class="btn btn-danger">Eliminar</button>
-            </form>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-
-      <div class="modal fade" id="modalEditar" tabindex="-1" aria-labelledby="modalEditarLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <form action="/admin/productos/edit" method="post" enctype="multipart/form-data">
-              <input type="hidden" id="editar-id" name="id">
-
-              <div class="modal-header">
-                <h5 class="modal-title" id="modalEditarLabel">Editar Producto</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <div class="form-group mb-3">
-                  <label for="editar-nombre_prod">Nombre</label>
-                  <input type="text" class="form-control" name="nombre_prod" id="editar-nombre_prod" required>
-                </div>
-                <div class="form-group mb-3">
-                  <label for="editar-marca">Marca</label>
-                  <input type="text" class="form-control" name="marca" id="editar-marca" required>
-                </div>
-                <div class="form-group mb-3">
-                  <label for="editar-precio">Precio</label>
-                  <input type="number" step="0.01" class="form-control" name="precio" id="editar-precio" required>
-                </div>
-                <div class="form-group mb-3">
-                  <label for="editar-stock">Stock</label>
-                  <input type="number" class="form-control" name="stock" id="editar-stock" required>
-                </div>
-                <div class="form-group mb-3">
-                  <label for="editar-imagen">Imagen</label>
-                  <input type="file" class="form-control" name="imagen" id="editar-imagen">
-                  <div>
-                    <img id="editar-imagen-preview" width="150" alt="Imagen actual">
-                  </div>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+      <hr>
+        <table class="table table-striped table-hover">
+          <thead class="table-dark">
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Marca</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Imagen</th>
+            <th>Acciones</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="producto : ${productos}">
+            <td th:text="${producto.id_producto}"></td>
+            <td th:text="${producto.nombre_prod}"></td>
+            <td th:text="${producto.marca}"></td>
+            <td>S/ <span th:text="${producto.precio}"></span></td>
+            <td><span th:text="${producto.stock}"></span> unidades</td>
+            <td><img th:src="@{'/img/' + ${producto.imagen}}" width="100"></td>
+            <td>
+              <a type="button" class="btn btn-warning btnEditar" data-bs-toggle="modal" data-bs-target="#modalAgregar" th:data-id_producto="${producto.id_producto}"
+                 th:data-nombre_prod="${producto.nombre_prod}" th:data-marca="${producto.marca}"
+                 th:data-precio="${producto.precio}" th:data-stock="${producto.stock}"
+                 th:data-imagen="${producto.imagen}">
+                Editar
+              </a>
+              <a th:href="@{/admin/productos/delete/{id}(id=${producto.id_producto})}" type="button" class="btn btn-danger btnEliminar">Eliminar</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
     </div>
   </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<th:block layout:fragment="page-scripts">
+    <script th:src="@{/js/producto.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
+</th:block>
 </body>
 </html>

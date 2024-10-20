@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('.btnAgregar').addEventListener('click', function () {
     usuarioForm.reset();
     idUsuarioInput.value = 0;
+    document.getElementById('rol').selectedIndex = 0;
     usuarioForm.setAttribute('method', 'POST');
     usuarioForm.setAttribute('th:action', '@{/admin/usuarios}');
   });

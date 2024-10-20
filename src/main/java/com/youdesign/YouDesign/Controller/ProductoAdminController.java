@@ -2,6 +2,7 @@ package com.youdesign.YouDesign.Controller;
 
 import com.youdesign.YouDesign.Dto.ProductoDTO;
 import com.youdesign.YouDesign.Entity.Productos;
+import com.youdesign.YouDesign.Repository.ProductoRepository;
 import com.youdesign.YouDesign.Service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 import java.util.UUID;
 
 @Controller
@@ -21,12 +23,14 @@ public class ProductoAdminController {
 
     @Autowired
     private ProductoService productoService;
+    private ProductoRepository productoRepository;
 
     private static final String UPLOAD_DIR = "src/main/resources/static/img/";
 
     @GetMapping
     public String listarProductos(Model model) {
         model.addAttribute("productos", productoService.listarTodos());
+        model.addAttribute("pageTitle", "Registro Productos");
         return "admin/productos";
     }
 
@@ -55,14 +59,16 @@ public class ProductoAdminController {
         return "redirect:/admin/productos";
     }
 
-    @PostMapping("/edit/{id}")
-    public String editarProducto(@PathVariable("id") Long id, @ModelAttribute ProductoDTO productoDTO) {
+    @PutMapping("/edit/{id}")
+    public String editarProducto(@PathVariable Long id, @ModelAttribute ProductoDTO productoDTO) {
+        Optional<Productos> productosOpt = productoRepository.findById(id);
         Productos producto = productoService.obtenerProductoPorId(id);
-        if (producto != null) {
-            producto.setNombre_prod(productoDTO.getNombre_prod());
-            producto.setMarca(productoDTO.getMarca());
-            producto.setPrecio(productoDTO.getPrecio());
-            producto.setStock(productoDTO.getStock());
+        if (productosOpt.isPresent()) {
+            Productos productos = productosOpt.get();
+            productos.setNombre_prod(productoDTO.getNombre_prod());
+            productos.setMarca(productoDTO.getMarca());
+            productos.setPrecio(productoDTO.getPrecio());
+            productos.setStock(productoDTO.getStock());
 
             MultipartFile imagen = productoDTO.getImagen();
             if (!imagen.isEmpty()) {
@@ -81,7 +87,7 @@ public class ProductoAdminController {
         return "redirect:/admin/productos";
     }
 
-    @PostMapping("/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String eliminarProducto(@PathVariable("id") Long id) {
         productoService.eliminarProducto(id);
         return "redirect:/admin/productos";

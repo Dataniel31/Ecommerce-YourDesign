@@ -16,17 +16,16 @@
         </div>
     </nav>
     <hr>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
             <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Dirección</th>
-                <th scope="col">Email</th>
-                <th scope="col">Password</th>
-                <th scope="col">Rol</th>
-                <th scope="col" colspan="2" class="text-center">ACCION</th>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Rol</th>
+                <th>ACCION</th>
             </tr>
             </thead>
             <tbody>
@@ -38,7 +37,7 @@
                 <td th:text="${usuario.password}"></td>
                 <td th:text="${usuario.rol.nombre}"></td>
                 <td>
-                    <a type="button" class="btn btn-info btnEditar" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    <a type="button" class="btn btn-warning btnEditar" data-bs-toggle="modal" data-bs-target="#exampleModal"
                             th:data-id_usuario="${usuario.id_usuario}"
                             th:data-nombre="${usuario.nombre}"
                             th:data-direccion="${usuario.direccion}"
@@ -50,7 +49,6 @@
             </tr>
             </tbody>
         </table>
-    </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
