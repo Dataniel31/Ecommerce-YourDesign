@@ -8,21 +8,23 @@ document.addEventListener('DOMContentLoaded', () => {
               id_producto: this.getAttribute('data-id_producto'),
               nombre_prod: this.getAttribute('data-nombre_prod'),
               marca: this.getAttribute('data-marca'),
+              categoria: this.getAttribute('data-categoria'),
               precio: this.getAttribute('data-precio'),
               stock: this.getAttribute('data-stock'),
-              imagen: this.getAttribute('data-imagen')
+              img_prod: this.getAttribute('data-img_prod')
           };
           idProductoInput.value = producto.id_producto;
           document.getElementById('nombre_prod').value = producto.nombre_prod;
           document.getElementById('marca').value = producto.marca;
+          document.getElementById('categoria').value = producto.categoria;
           document.getElementById('precio').value = producto.precio;
           document.getElementById('stock').value = producto.stock;
-          document.getElementById('imagen').value = producto.imagen;
 
-          productoForm.action = '/admin/productos/edit/' + producto.id_producto;
-          productoForm.method = 'PUT';
+          productoForm.action = '/admin/productos/editar/' + producto.id_producto;
+          productoForm.method = 'POST';
       });
   });
+
   document.querySelectorAll('.btnEliminar').forEach(button => {
       button.addEventListener('click', function (event) {
           event.preventDefault();
@@ -46,6 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('.btnAgregar').addEventListener('click', function () {
     productoForm.reset();
     idProductoInput.value = 0;
+    document.getElementById('marca').selectedIndex = 0;
+    document.getElementById('categoria').selectedIndex = 0;
     productoForm.setAttribute('method', 'POST');
     productoForm.setAttribute('th:action', '@{/admin/productos}');
   });
@@ -58,15 +62,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  productoForm.addEventListener('submit', function (event) {
+  usuarioForm.addEventListener('submit', function (event) {
     const hasError = false;
-    const isEditing = idProductoInput.value !== 0;
+    const isEditing = idUsuarioInput.value !== 0;
 
     if (hasError) {
       event.preventDefault();
-      mostrarMensaje('error', isEditing ? 'Error al editar Producto' : 'Error al agregar Producto');
+      mostrarMensaje('error', isEditing ? 'Error al editar Usuario' : 'Error al agregar usuario');
     } else {
-      mostrarMensaje('success', isEditing ? 'Se actualizó el Producto exitosamente' : 'Se agregó el Producto exitosamente');
+      mostrarMensaje('success', isEditing ? 'Se actualizó el Usuario exitosamente' : 'Se agregó el Usuario exitosamente');
     }
   });
 });

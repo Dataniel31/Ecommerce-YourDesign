@@ -34,37 +34,37 @@ public class controller {
 
     @GetMapping("/producto")
     public String producto(Model model) {
-        model.addAttribute("pageTitle", "Productos");
+        model.addAttribute("pageTitle", "Producto");
         return "producto";
     }
     @GetMapping("/cat-accesorios")
     public String accesorios(Model model) {
-        model.addAttribute("pageTitle", "Productos");
+        model.addAttribute("pageTitle", "Producto");
         return "cat-accesorios";
     }
     @GetMapping("/cat-botines")
     public String botines(Model model) {
-        model.addAttribute("pageTitle", "Productos");
+        model.addAttribute("pageTitle", "Producto");
         return "cat-botines";
     }
     @GetMapping("/cat-hombre")
     public String hombre(Model model) {
-        model.addAttribute("pageTitle", "Productos");
+        model.addAttribute("pageTitle", "Producto");
         return "cat-hombre";
     }
     @GetMapping("/cat-infantil")
     public String mujer(Model model) {
-        model.addAttribute("pageTitle", "Productos");
+        model.addAttribute("pageTitle", "Producto");
         return "cat-infantil";
     }
     @GetMapping("/cat-mujer")
     public String zapatillas(Model model) {
-        model.addAttribute("pageTitle", "Productos");
+        model.addAttribute("pageTitle", "Producto");
         return "cat-mujer";
     }
     @GetMapping("/cat-zapatillas")
     public String infantil(Model model) {
-        model.addAttribute("pageTitle", "Productos");
+        model.addAttribute("pageTitle", "Producto");
         return "cat-zapatillas";
     }
 

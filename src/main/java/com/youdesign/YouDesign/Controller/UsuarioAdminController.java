@@ -56,7 +56,7 @@ public class UsuarioAdminController {
         return "redirect:/admin/usuarios";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/delete/{id}")
     public String eliminarUsuario(@PathVariable Long id){
         usuarioService.deleteUsuario(id);
         return "redirect:/admin/usuarios";

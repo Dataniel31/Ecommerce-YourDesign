@@ -44,7 +44,7 @@
                             th:data-email="${usuario.email}"
                             th:data-password="${usuario.password}"
                             th:data-rol="${usuario.rol.nombre}">Editar</a>
-                    <a th:href="@{/admin/usuarios/{id}(id=${usuario.id_usuario})}" type="button" class="btn btn-danger btnEliminar">Eliminar</a>
+                    <a th:href="@{/admin/usuarios/delete/{id}(id=${usuario.id_usuario})}" type="button" class="btn btn-danger btnEliminar">Eliminar</a>
                 </td>
             </tr>
             </tbody>
