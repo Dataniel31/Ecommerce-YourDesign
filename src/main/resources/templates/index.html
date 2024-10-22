@@ -38,40 +38,10 @@
             <div class="container">
                 <h2 class="mb-5">¿Qué producto deseas comprar?</h2>
                 <div class="row justify-content-center">
-                    <div class="col-md-2 category-item">
+                    <div class="col-md-2 category-item" th:each="categoria : ${categoria}">
                         <button class="btn category-btn">
-                            <img src="/img/mujer-cat.png" alt="Mujer" class="category-img">
-                            <p>Mujer</p>
-                        </button>
-                    </div>
-                    <div class="col-md-2 category-item">
-                        <button class="btn category-btn">
-                            <img src="/img/hombre-cat.png" alt="Hombre" class="category-img">
-                            <p>Hombre</p>
-                        </button>
-                    </div>
-                    <div class="col-md-2 category-item">
-                        <button class="btn category-btn">
-                            <img src="/img/infantil-cat.png" alt="Infantil" class="category-img">
-                            <p>Infantil</p>
-                        </button>
-                    </div>
-                    <div class="col-md-2 category-item">
-                        <button class="btn category-btn">
-                            <img src="/img/botines-cat.png" alt="Botines" class="category-img">
-                            <p>Botines</p>
-                        </button>
-                    </div>
-                    <div class="col-md-2 category-item">
-                        <button class="btn category-btn">
-                            <img src="/img/zapatillas-cat.png" alt="Zapatillas" class="category-img">
-                            <p>Zapatillas</p>
-                        </button>
-                    </div>
-                    <div class="col-md-2 category-item">
-                        <button class="btn category-btn">
-                            <img src="/img/accesorio-cat.png" alt="Accesorios" class="category-img">
-                            <p>Accesorios</p>
+                            <img th:src="@{'/img/'+${categoria.img_cate}}" alt="..." class="category-img">
+                            <p th:text="${categoria.nombre}"></p>
                         </button>
                     </div>
                 </div>
@@ -158,46 +128,17 @@
                 <h2 class="mb-5">Nuestras Marcas</h2>
                 <div id="brandsCarousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="row text-center">
-                                <div class="col-3">
-                                    <img src="/img/puma.jpg" class="d-block w-100" alt="Marca 1">
-                                </div>
-                                <div class="col-3">
-                                    <img src="/img/chanel.jpg" class="d-block w-100" alt="Marca 2">
-                                </div>
-                                <div class="col-3">
-                                    <img src="/img/gucci.jpg" class="d-block w-100" alt="Marca 3">
-                                </div>
-                                <div class="col-3">
-                                    <img src="/img/adidas.jpg" class="d-block w-100" alt="Marca 4">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="row text-center">
-                                <div class="col-3">
-                                    <img src="/img/vans.jpg" class="d-block w-100" alt="Marca 5">
-                                </div>
-                                <div class="col-3">
-                                    <img src="/img/nike.jpg" class="d-block w-100" alt="Marca 6">
-                                </div>
-                                <div class="col-3">
-                                    <img src="/img/balenciaga.jpg" class="d-block w-100" alt="Marca 7">
-                                </div>
-                                <div class="col-3">
-                                    <img src="/img/louis-vuitton.jpg" class="d-block w-100" alt="Marca 8">
-                                </div>
+                        <div class="row text-center">
+                            <div class="col-3" th:each="marca : ${marca}">
+                                <img th:src="@{'/img/'+${marca.img_marca}}" class="d-block w-100" th:alt="${marca.nombre}">
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#brandsCarousel"
-                            data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#brandsCarousel" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#brandsCarousel"
-                            data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#brandsCarousel" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
