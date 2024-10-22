@@ -40,7 +40,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-2 category-item" th:each="categoria : ${categoria}">
                         <button class="btn category-btn">
-                            <img th:src="@{'/img/'+${categoria.img_cate}}" alt="..." class="category-img">
+                            <img th:src="@{'/img/'+${categoria.img_cate}}" th:alt="${categoria.nombre}" class="category-img">
                             <p th:text="${categoria.nombre}"></p>
                         </button>
                     </div>

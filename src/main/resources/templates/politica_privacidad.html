@@ -1,21 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="~{plantilla::head}">
     <meta charset="UTF-8">
-
 </head>
+
 <body class="body-fondo">
 <header th:replace="~{plantilla::header}">
 
 </header>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="/">
-            <img src="img/logo.png" alt="Logo" style="height: 40px;">
-        </a>
-    </div>
-</nav>
-
 <!-- Contenido -->
 <div class="container my-4">
     <h1 class="text-center">Política de Privacidad</h1>
@@ -58,13 +51,10 @@
     <h2>9. Contacto</h2>
     <p>Si tienes preguntas o inquietudes sobre nuestra política de privacidad, no dudes en contactarnos a través de <a href="mailto:mesadeayuda@youdesign.com">mesadeayuda@youdesign.com</a> o llamarnos al (+51) 902 658 227.</p>
 </div>
+<br>
 
-<!-- Footer -->
-<footer class="bg-dark text-white text-center py-3">
-    <div class="container">
-        <p class="mb-0">© 2024 You Design. Todos los derechos reservados.</p>
-    </div>
+<footer th:replace="~{plantilla::footer}">
+
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
