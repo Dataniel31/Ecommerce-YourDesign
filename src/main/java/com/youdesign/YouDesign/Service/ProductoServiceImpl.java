@@ -128,4 +128,9 @@ public class ProductoServiceImpl implements ProductoService{
 
     }
 
+    @Override
+    public List<Producto> findByCate(Categoria cate) {
+        return productoRepository.findByCategoria(categoriaRepository.findByNombre(cate.getNombre()));
+    }
+
 }

@@ -8,7 +8,7 @@
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
-    <link rel="icon" href="img/logo.png" type="image/x-icon">
+    <link rel="icon" th:href="@{/img/logo.png}" type="image/x-icon">
     <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
 
 </head>
@@ -19,7 +19,7 @@
         <div class="container">
             <!-- Logo de la empresa -->
             <a class="navbar-brand" href="/">
-                <img src="img/logo.png" alt="Logo" style="height: 40px;">
+                <img th:src="@{/img/logo.png}" alt="Logo" style="height: 40px;">
             </a>
 
             <!-- Botón para colapsar el menú en pantallas pequeñas -->
@@ -32,21 +32,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+                        <a class="nav-link active" aria-current="page" th:href="@{/}">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="nosotros">Nosotros</a>
+                        <a class="nav-link active" th:href="@{/nosotros}">Nosotros</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Categorias
                         </a>
                         <ul class="dropdown-menu bg-dark">
-                            <li><a th:each="categoria : ${categoria}" class="nav-link dropdown-item" href="#" th:text="${categoria.nombre}"></a></li>
+                            <li><a class="nav-link dropdown-item" th:href="@{/productos}">Todos los productos</a></li>
+                            <li><a th:each="categoria : ${categoria}" class="nav-link dropdown-item" th:href="@{'/productos/' + ${categoria.id_cate}}" th:text="${categoria.nombre}"></a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="contacto">Contacto</a>
+                        <a class="nav-link active" th:href="@{/contacto}">Contacto</a>
                     </li>
                 </ul>
 
@@ -113,14 +114,14 @@
             <div class="col-md-6 mb-3">
                 <ul class="list-unstyled d-flex">
                     <li class="mx-2">
-                        <a href="terminosycondiciones" class="text-white text-decoration-none">Términos y
+                        <a th:href="@{/terminosycondiciones}" class="text-white text-decoration-none">Términos y
                             Condiciones</a>
                     </li>
                     <li class="mx-2">
                         <span class="text-white">|</span>
                     </li>
                     <li class="mx-2">
-                        <a href="politicaprivacidad" class="text-white text-decoration-none">Política de Privacidad</a>
+                        <a th:href="@{/politicaprivacidad}" class="text-white text-decoration-none">Política de Privacidad</a>
                     </li>
                 </ul>
             </div>

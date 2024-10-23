@@ -9,63 +9,14 @@
 
 </header>
 <div class="container my-4">
-  <h1 class="text-center">Categoria</h1>
+  <h1 class="text-center">Productos</h1>
   <hr>
   <div class="row justify-content-center">
-    <div class="col-md-3 product-item">
-      <button class="btn product-btn" onclick="addToCart('Producto 1', 25.99)">
-        <img src="/img/producto-accesorio1.jpg" alt="Producto 1" class="product-img">
-        <p>Producto 1</p>
-        <p class="price">S/25.99</p>
-      </button>
-    </div>
-    <div class="col-md-3 product-item">
-      <button class="btn product-btn" onclick="addToCart('Producto 2', 30.50)">
-        <img src="/img/producto-accesorio2.jpg" alt="Producto 2" class="product-img">
-        <p>Producto 2</p>
-        <p class="price">S/30.50</p>
-      </button>
-    </div>
-    <div class="col-md-3 product-item">
-      <button class="btn product-btn" onclick="addToCart('Producto 3', 19.99)">
-        <img src="/img/producto-accesorio3.jpg" alt="Producto 3" class="product-img">
-        <p>Producto 3</p>
-        <p class="price">S/19.99</p>
-      </button>
-    </div>
-    <div class="col-md-3 product-item">
-      <button class="btn product-btn" onclick="addToCart('Producto 4', 45.00)">
-        <img src="/img/producto-accesorio4.jpg" alt="Producto 4" class="product-img">
-        <p>Producto 4</p>
-        <p class="price">$S/45.00</p>
-      </button>
-    </div>
-    <div class="col-md-3 product-item">
-      <button class="btn product-btn" onclick="addToCart('Producto 5', 27.50)">
-        <img src="/img/producto-accesorio5.jpg" alt="Producto 5" class="product-img">
-        <p>Producto 5</p>
-        <p class="price">S/27.50</p>
-      </button>
-    </div>
-    <div class="col-md-3 product-item">
-      <button class="btn product-btn" onclick="addToCart('Producto 6', 22.99)">
-        <img src="/img/producto-accesorio6.jpg" alt="Producto 6" class="product-img">
-        <p>Producto 6</p>
-        <p class="price">S/22.99</p>
-      </button>
-    </div>
-    <div class="col-md-3 product-item">
-      <button class="btn product-btn" onclick="addToCart('Producto 7', 34.99)">
-        <img src="/img/producto-accesorio7.jpg" alt="Producto 7" class="product-img">
-        <p>Producto 7</p>
-        <p class="price">S/34.99</p>
-      </button>
-    </div>
-    <div class="col-md-3 product-item">
-      <button class="btn product-btn" onclick="addToCart('Producto 8', 40.99)">
-        <img src="/img/producto-accesorio8.jpg" alt="Producto 8" class="product-img">
-        <p>Producto 8</p>
-        <p class="price">S/40.99</p>
+    <div class="col-md-3 product-item" th:each="producto : ${producto}" onclick="">
+      <button class="btn product-btn">
+        <img th:src="@{'/img/' + ${producto.img_prod}}" th:alt="${producto.nombre_prod}" class="product-img">
+        <p th:text="${producto.nombre_prod}"></p>
+        <p class="price" th:text="${producto.precio}"></p>
       </button>
     </div>
   </div>
