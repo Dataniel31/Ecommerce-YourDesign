@@ -36,7 +36,7 @@
       <td th:text="${producto.nombre_prod}"></td>
       <td th:text="${producto.marca.nombre}"></td>
       <td th:text="${producto.categoria.nombre}"></td>
-      <td th:text="${producto.precio}"></td>
+      <td th:text="@{'S/. ' + ${producto.precio}}"></td>
       <td th:text="${producto.stock}"></td>
       <td>
         <img th:src="@{'/img/'+${producto.img_prod}}" alt="..." width="100">

@@ -16,7 +16,7 @@
       <button class="btn product-btn">
         <img th:src="@{'/img/' + ${producto.img_prod}}" th:alt="${producto.nombre_prod}" class="product-img">
         <p th:text="${producto.nombre_prod}"></p>
-        <p class="price" th:text="${producto.precio}"></p>
+        <p class="price" th:text="@{'S/. '+ ${producto.precio}}"></p>
       </button>
     </div>
   </div>
