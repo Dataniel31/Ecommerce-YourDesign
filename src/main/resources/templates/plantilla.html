@@ -63,8 +63,11 @@
                             <a class="btn btn-outline-light" th:href="@{/login}">Login</a>
                             <a class="btn btn-outline-light" th:href="@{/registrar}">Registrar</a>
                         </li>
-                        <li sec:authorize="isAuthenticated()" class="nav-item">
-                            <a class="btn btn-outline-light" th:href="@{/logout}">Cerrar sesión</a>
+                        <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+                            <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <span sec:authentication="principal.username"></span> </a>
+                            <ul class="dropdown-menu">
+                                <a class="btn btn-outline-light dropdown-item" th:href="@{/logout}">Cerrar sesión</a>
+                            </ul>
                         </li>
                     </ul>
                 </div>
