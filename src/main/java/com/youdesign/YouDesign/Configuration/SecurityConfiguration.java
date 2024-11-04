@@ -40,6 +40,8 @@ public class SecurityConfiguration {
                 .formLogin(formLogin ->
                         formLogin
                                 .loginPage("/login")
+                                .defaultSuccessUrl("/", true)
+                                .failureUrl("/login?error=true")
                                 .permitAll()
                 )
                 .logout(logout ->
@@ -49,8 +51,7 @@ public class SecurityConfiguration {
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                 .logoutSuccessUrl("/login?logout")
                                 .permitAll()
-                )
-                .csrf(csrf -> csrf.disable());
+                );
 
         return http.build();
     }
