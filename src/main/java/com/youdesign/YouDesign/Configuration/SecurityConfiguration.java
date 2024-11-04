@@ -33,15 +33,13 @@ public class SecurityConfiguration {
         http
                 .authorizeRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/registrar**", "/js/**", "/css/**", "/img/**", "/", "/nosotros", "/contacto", "/productos/**").permitAll()
+                                .requestMatchers("/registrar**", "/js/**", "/css/**", "/img/**", "/", "/nosotros", "/contacto","/terminosycondiciones","/politicaprivacidad", "/productos/**").permitAll()
                                 .requestMatchers("/admin/**").hasAuthority("Administrador")
                                 .anyRequest().authenticated()
                 )
                 .formLogin(formLogin ->
                         formLogin
                                 .loginPage("/login")
-                                .defaultSuccessUrl("/", true)
-                                .failureUrl("/login?error=true")
                                 .permitAll()
                 )
                 .logout(logout ->
