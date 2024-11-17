@@ -2,12 +2,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const usuarioForm = document.getElementById('usuarioForm');
   const idUsuarioInput = document.getElementById('id_usuario');
   const emailInput = document.getElementById('email');
+  const originalEmailInput = document.getElementById('originalEmail');
   const passwordDiv = document.getElementById('passdiv');
 
-  // Función para verificar si el email ya existe
   const emailExists = async (email) => {
-    const response = await fetch(`/admin/usuarios/checkEmail?email=${encodeURIComponent(email)}`);
-    return response.json();
+    try {
+      const response = await fetch(`/admin/usuarios/checkEmail?email=${encodeURIComponent(email)}`);
+      if (!response.ok) {
+        throw new Error('Error al verificar el email');
+      }
+      return await response.json();
+    } catch (error) {
+      console.error('Error en emailExists:', error);
+      return false;
+    }
   };
 
   document.querySelectorAll('.btnEditar').forEach(button => {
@@ -20,10 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
         password: this.getAttribute('data-password'),
         rol: this.getAttribute('data-rol')
       };
+
       idUsuarioInput.value = usuario.id_usuario;
       document.getElementById('nombre').value = usuario.nombre;
       document.getElementById('direccion').value = usuario.direccion;
-      document.getElementById('email').value = usuario.email;
+      emailInput.value = usuario.email;
+      originalEmailInput.value = usuario.email;
       document.getElementById('password').value = usuario.password;
       document.getElementById('rol').value = usuario.rol;
 
@@ -41,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       Swal.fire({
         title: '¿Estás seguro?',
-        text: "¡No podrás revertir esto!",
+        text: '¡No podrás revertir esto!',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',
@@ -58,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('.btnAgregar').addEventListener('click', function () {
     usuarioForm.reset();
     idUsuarioInput.value = 0;
+    originalEmailInput.value = '';
     document.getElementById('rol').selectedIndex = 0;
     passwordDiv.style.display = 'block';
     usuarioForm.setAttribute('method', 'POST');
@@ -76,16 +87,24 @@ document.addEventListener('DOMContentLoaded', () => {
     event.preventDefault();
 
     const email = emailInput.value.trim();
-    const isEditing = idUsuarioInput.value !== "0";
+    const originalEmail = originalEmailInput.value.trim();
+    const isEditing = idUsuarioInput.value !== '0';
 
     try {
       const exists = await emailExists(email);
 
       if (exists && !isEditing) {
         mostrarMensaje('error', 'El email ya está registrado');
+      } else if (exists && isEditing) {
+        if (originalEmail === email) {
+          usuarioForm.submit();
+          mostrarMensaje('success', 'Se actualizó el Usuario exitosamente');
+        } else {
+          mostrarMensaje('error', 'El email ya está registrado');
+        }
       } else {
-        mostrarMensaje('success', isEditing ? 'Se actualizó el Usuario exitosamente' : 'Se agregó el Usuario exitosamente');
         usuarioForm.submit();
+        mostrarMensaje('success', isEditing ? 'Se actualizó el Usuario exitosamente' : 'Se agregó el Usuario exitosamente');
       }
     } catch (error) {
       mostrarMensaje('error', 'Ocurrió un error al validar el email');
