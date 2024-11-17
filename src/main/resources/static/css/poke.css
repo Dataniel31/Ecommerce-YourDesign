@@ -1,0 +1,25 @@
+.poke-div {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+}
+
+
+.poke-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.perfil-texto {
+    text-align: center;
+    margin-top: 5px;
+    font-size: 20px;
+}

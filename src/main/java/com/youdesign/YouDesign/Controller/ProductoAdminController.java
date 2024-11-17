@@ -3,10 +3,12 @@ package com.youdesign.YouDesign.Controller;
 import com.youdesign.YouDesign.Dto.Productodto;
 import com.youdesign.YouDesign.Entity.Categoria;
 import com.youdesign.YouDesign.Entity.Marca;
+import com.youdesign.YouDesign.Entity.Pokemon;
 import com.youdesign.YouDesign.Entity.Producto;
 import com.youdesign.YouDesign.Repository.CategoriaRepository;
 import com.youdesign.YouDesign.Repository.MarcaRepository;
 import com.youdesign.YouDesign.Repository.ProductoRepository;
+import com.youdesign.YouDesign.Service.PokemonService;
 import com.youdesign.YouDesign.Service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,8 @@ import java.util.List;
 @Controller
 @RequestMapping("admin/productos")
 public class ProductoAdminController {
+    @Autowired
+    private PokemonService pokemonService;
     private final ProductoRepository productoRepository;
     private final ProductoService productoService;
     private final MarcaRepository marcaRepository;
@@ -43,6 +47,8 @@ public class ProductoAdminController {
         model.addAttribute("marca", marca);
         List<Categoria> categoria = categoriaRepository.findAll();
         model.addAttribute("categoria", categoria);
+        Pokemon pokemon = pokemonService.getRandomPokemon();
+        model.addAttribute("pokemon", pokemon);
         return "admin/productos";
     }
 

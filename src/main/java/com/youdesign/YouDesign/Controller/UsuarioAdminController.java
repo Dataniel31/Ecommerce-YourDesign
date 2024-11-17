@@ -1,10 +1,12 @@
 package com.youdesign.YouDesign.Controller;
 
 import com.youdesign.YouDesign.Dto.UsuarioRegistrodto;
+import com.youdesign.YouDesign.Entity.Pokemon;
 import com.youdesign.YouDesign.Entity.Rol;
 import com.youdesign.YouDesign.Entity.Usuario;
 import com.youdesign.YouDesign.Repository.RolRepository;
 import com.youdesign.YouDesign.Repository.UsuarioRepository;
+import com.youdesign.YouDesign.Service.PokemonService;
 import com.youdesign.YouDesign.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("admin/usuarios")
 public class UsuarioAdminController {
+    @Autowired
+    private PokemonService pokemonService;
     @Autowired
     private final UsuarioService usuarioService;
 
@@ -34,6 +38,8 @@ public class UsuarioAdminController {
         model.addAttribute("pageTitle", "Registro Usuarios");
         model.addAttribute("usuarios", usuarioService.findAll());
         model.addAttribute("roles", rolRepository.findAll());
+        Pokemon pokemon = pokemonService.getRandomPokemon();
+        model.addAttribute("pokemon", pokemon);
         return "admin/usuarios";
     }
 

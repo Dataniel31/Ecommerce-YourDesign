@@ -2,7 +2,9 @@ package com.youdesign.YouDesign.Controller;
 
 import com.youdesign.YouDesign.Dto.Categoriadto;
 import com.youdesign.YouDesign.Entity.Categoria;
+import com.youdesign.YouDesign.Entity.Pokemon;
 import com.youdesign.YouDesign.Repository.CategoriaRepository;
+import com.youdesign.YouDesign.Service.PokemonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +23,8 @@ import java.util.List;
 @RequestMapping("admin/categorias")
 public class CategoriaAdminController {
     @Autowired
+    private PokemonService pokemonService;
+    @Autowired
     private CategoriaRepository categoriaRepository;
 
     @GetMapping
@@ -28,6 +32,8 @@ public class CategoriaAdminController {
         List<Categoria> categoria = categoriaRepository.findAll();
         model.addAttribute("categoria", categoria);
         model.addAttribute("pageTitle", "Registro Categoria");
+        Pokemon pokemon = pokemonService.getRandomPokemon();
+        model.addAttribute("pokemon", pokemon);
         return "admin/categorias";
     }
     @PostMapping

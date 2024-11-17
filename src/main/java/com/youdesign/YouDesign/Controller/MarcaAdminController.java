@@ -2,7 +2,9 @@ package com.youdesign.YouDesign.Controller;
 
 import com.youdesign.YouDesign.Dto.Marcadto;
 import com.youdesign.YouDesign.Entity.Marca;
+import com.youdesign.YouDesign.Entity.Pokemon;
 import com.youdesign.YouDesign.Repository.MarcaRepository;
+import com.youdesign.YouDesign.Service.PokemonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,8 @@ import java.util.List;
 @RequestMapping("admin/marcas")
 public class MarcaAdminController {
     @Autowired
+    private PokemonService pokemonService;
+    @Autowired
     private MarcaRepository marcaRepository;
 
     @GetMapping
@@ -25,6 +29,8 @@ public class MarcaAdminController {
         List<Marca> marca = marcaRepository.findAll();
         model.addAttribute("marca", marca);
         model.addAttribute("pageTitle", "Registro Marcas");
+        Pokemon pokemon = pokemonService.getRandomPokemon();
+        model.addAttribute("pokemon", pokemon);
         return "admin/marcas";
     }
     @PostMapping

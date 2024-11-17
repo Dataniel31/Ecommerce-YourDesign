@@ -10,6 +10,7 @@
 
     <link rel="icon" th:href="@{/img/logo.png}" type="image/x-icon">
     <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/poke.css}">
 
 </head>
 <body>
@@ -66,9 +67,18 @@
                         <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
                             <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <i class="bi bi-person-circle me-2"></i><span sec:authentication="principal.username"></span> </a>
                             <ul class="dropdown-menu">
+                                <a class="btn btn-outline-light dropdown-item text-center" href="#">
+                                    <div class="poke-div">
+                                        <img th:src="${pokemon.imageUrl}" alt="Pokemon" class="poke-img">
+                                    </div>
+                                    <div class="perfil-texto">
+                                        <p>Perfil</p>
+                                    </div>
+                                </a>
                                 <a class="btn btn-outline-light dropdown-item" th:href="@{/admin/home}" sec:authorize="hasAuthority('Administrador')">Dashboard Admin</a>
                                 <a class="btn btn-outline-light dropdown-item" th:href="@{/logout}">Cerrar Sesión</a>
                             </ul>
+
                         </li>
                     </ul>
                 </div>

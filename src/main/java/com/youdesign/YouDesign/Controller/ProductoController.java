@@ -1,10 +1,13 @@
 package com.youdesign.YouDesign.Controller;
 
 import com.youdesign.YouDesign.Entity.Categoria;
+import com.youdesign.YouDesign.Entity.Pokemon;
 import com.youdesign.YouDesign.Entity.Producto;
 import com.youdesign.YouDesign.Repository.CategoriaRepository;
 import com.youdesign.YouDesign.Repository.ProductoRepository;
+import com.youdesign.YouDesign.Service.PokemonService;
 import com.youdesign.YouDesign.Service.ProductoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +17,8 @@ import java.util.List;
 
 @Controller
 public class ProductoController {
+    @Autowired
+    private PokemonService pokemonService;
     private final CategoriaRepository categoriaRepository;
     private final ProductoService productoService;
     private final ProductoRepository productoRepository;
@@ -31,6 +36,8 @@ public class ProductoController {
         model.addAttribute("categoria", categoria);
         List<Producto> producto = productoRepository.findAll();
         model.addAttribute("producto", producto);
+        Pokemon pokemon = pokemonService.getRandomPokemon();
+        model.addAttribute("pokemon", pokemon);
         return "list-producto";
     }
     @GetMapping("/plantilla")
@@ -45,6 +52,8 @@ public class ProductoController {
         List<Categoria> categoria = categoriaRepository.findAll();
         model.addAttribute("categoria", categoria);
         model.addAttribute("producto", productoService.findByCate(cate));
+        Pokemon pokemon = pokemonService.getRandomPokemon();
+        model.addAttribute("pokemon", pokemon);
         return "list-producto";
     }
 }
