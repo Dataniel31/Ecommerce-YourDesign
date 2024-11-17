@@ -82,7 +82,6 @@ public class UsuarioServiceImpl implements UsuarioService {
             usuario.setNombre(registrodto.getNombre());
             usuario.setDireccion(registrodto.getDireccion());
             usuario.setEmail(registrodto.getEmail());
-            usuario.setPassword(passwordEncoder.encode(registrodto.getPassword()));
             usuario.setRol(rol);
             return usuarioRepository.save(usuario);
         } else {

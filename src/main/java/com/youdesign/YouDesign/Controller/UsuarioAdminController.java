@@ -21,6 +21,8 @@ public class UsuarioAdminController {
 
     @Autowired
     private RolRepository rolRepository;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     public UsuarioAdminController(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
@@ -34,8 +36,9 @@ public class UsuarioAdminController {
         model.addAttribute("roles", rolRepository.findAll());
         return "admin/usuarios";
     }
+
     @PostMapping
-    public String guardarUsuario(@ModelAttribute("usuario") UsuarioRegistrodto registrodto){
+    public String guardarUsuario(@ModelAttribute("usuario") UsuarioRegistrodto registrodto) {
         Rol rolUsuario = rolRepository.findByNombre(registrodto.getRol());
         if (rolUsuario == null) {
             rolUsuario = new Rol(registrodto.getRol());
@@ -57,8 +60,14 @@ public class UsuarioAdminController {
     }
 
     @GetMapping("/delete/{id}")
-    public String eliminarUsuario(@PathVariable Long id){
+    public String eliminarUsuario(@PathVariable Long id) {
         usuarioService.deleteUsuario(id);
         return "redirect:/admin/usuarios";
+    }
+
+    @GetMapping("/checkEmail")
+    @ResponseBody
+    public boolean checkEmail(@RequestParam("email") String email) {
+        return usuarioRepository.findByEmail(email) != null;
     }
 }
