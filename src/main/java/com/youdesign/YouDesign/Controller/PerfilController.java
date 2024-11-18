@@ -1,8 +1,10 @@
 package com.youdesign.YouDesign.Controller;
 
 import com.youdesign.YouDesign.Dto.UsuarioRegistrodto;
+import com.youdesign.YouDesign.Entity.Categoria;
 import com.youdesign.YouDesign.Entity.Pokemon;
 import com.youdesign.YouDesign.Entity.Usuario;
+import com.youdesign.YouDesign.Repository.CategoriaRepository;
 import com.youdesign.YouDesign.Service.PokemonService;
 import com.youdesign.YouDesign.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class PerfilController {
@@ -25,12 +28,17 @@ public class PerfilController {
     private PokemonService pokemonService;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private CategoriaRepository categoriaRepository;
 
     @GetMapping("/perfil")
     public String mostrarPerfil(Model model, Principal principal) {
         String email = principal.getName();
         Usuario usuario = usuarioService.findByEmail(email);
         model.addAttribute("usuario", usuario);
+        model.addAttribute("pageTitle", "Mi Perfil");
+        List<Categoria> categoria = categoriaRepository.findAll();
+        model.addAttribute("categoria", categoria);
         Pokemon pokemon = pokemonService.getRandomPokemon();
         model.addAttribute("pokemon", pokemon);
         return "perfil";
