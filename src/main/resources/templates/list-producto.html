@@ -18,6 +18,7 @@
         <p th:text="${producto.nombre_prod}"></p>
         <p class="price" th:text="@{'S/. '+ ${producto.precio}}"></p>
       </button>
+      <button onclick="addToCart(this)">Añadir a carrito</button>
     </div>
   </div>
 </div>
