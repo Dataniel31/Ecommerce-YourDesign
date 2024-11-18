@@ -67,7 +67,7 @@
                         <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
                             <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <i class="bi bi-person-circle me-2"></i><span sec:authentication="principal.username"></span> </a>
                             <ul class="dropdown-menu">
-                                <a class="btn btn-outline-light dropdown-item text-center" href="#">
+                                <a class="btn btn-outline-light dropdown-item text-center" th:href="@{/perfil}">
                                     <div class="poke-div">
                                         <img th:src="${pokemon.imageUrl}" alt="Pokemon" class="poke-img">
                                     </div>

@@ -90,6 +90,19 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
+    public Usuario updateRegistro(Long id, UsuarioRegistrodto registrodto) {
+        Optional<Usuario> usuarioOpt = usuarioRepository.findById(id);
+        if (usuarioOpt.isPresent()) {
+            Usuario usuario = usuarioOpt.get();
+            usuario.setNombre(registrodto.getNombre());
+            usuario.setDireccion(registrodto.getDireccion());
+            return usuarioRepository.save(usuario);
+        } else {
+            throw new RuntimeException("Usuario no encontrado");
+        }
+    }
+
+    @Override
     public void deleteUsuario(Long id_usuario) {
         usuarioRepository.deleteById(id_usuario);
     }
@@ -102,6 +115,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public List<Usuario> findAll() {
         return usuarioRepository.findAll();
+    }
+
+    @Override
+    public Usuario findByEmail(String email) {
+        return usuarioRepository.findByEmail(email);
     }
 
     @Override
