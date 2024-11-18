@@ -135,3 +135,9 @@
 #carousel-marcas {
     margin-top: 50px;
 }
+.mensaje-confirmacion {
+    text-align: center;
+    color: green;
+    text-transform: uppercase;
+    font-weight: bold;
+}
