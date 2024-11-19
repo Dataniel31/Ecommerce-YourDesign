@@ -9,7 +9,15 @@
 
 </header>
 <div class="container my-4">
-  <h1>Productos</h1>
+  <div class="d-flex justify-content-between align-items-center">
+    <h1>Productos</h1>
+    <button id="cart-button" class="btn position-relative">
+      <i class="bi bi-cart3 fs-4"></i>
+      <span id="cart-counter" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+      0
+    </span>
+    </button>
+  </div>
   <hr>
   <div class="row g-4">
     <div class="col-12 col-sm-6 col-lg-3" th:each="producto : ${producto}">
@@ -29,9 +37,40 @@
       </div>
     </div>
   </div>
+  <div id="cart-modal" class="cart-modal">
+    <div class="cart-content">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3>Carrito de Compras</h3>
+        <button id="close-cart" class="btn-close"></button>
+      </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+            <th>Acciones</th>
+          </tr>
+          </thead>
+          <tbody id="cart-items">
+          <!-- Cart items will be added here dynamically -->
+          </tbody>
+          <tfoot>
+          <tr>
+            <td colspan="3" class="text-end"><strong>Total:</strong></td>
+            <td colspan="2"><strong id="cart-total">S/. 0.00</strong></td>
+          </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 <footer th:replace="~{plantilla::footer}">
 </footer>
 <script th:src="@{/js/producto-user.js}"></script>
+<script th:src="@{/js/carrito.js}"></script>
 </body>
 </html>
