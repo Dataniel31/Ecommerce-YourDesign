@@ -11,7 +11,7 @@
     <link rel="icon" th:href="@{/img/logo.png}" type="image/x-icon">
     <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/poke.css}">
-
+    <link rel="stylesheet" type="text/css" th:href="@{/css/carrito.css}">
 </head>
 <body>
 <h1 th:text="'Bienvenido a la página de ' + ${pageTitle}"></h1>
@@ -46,9 +46,6 @@
                             <li><a class="nav-link dropdown-item" th:href="@{/productos}">Todos los productos</a></li>
                             <li><a th:each="categoria : ${categoria}" class="nav-link dropdown-item" th:href="@{'/productos/' + ${categoria.id_cate}}" th:text="${categoria.nombre}"></a></li>
                         </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" th:href="@{/carrito}"> (0) Carrito</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" th:href="@{/contacto}">Contacto</a>
