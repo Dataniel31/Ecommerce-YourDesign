@@ -21,7 +21,7 @@
   <hr>
   <div class="row g-4">
     <div class="col-12 col-sm-6 col-lg-3" th:each="producto : ${producto}">
-      <div class="card h-100">
+      <div class="card h-100" th:data-producto-id="${producto.id_producto}">
         <img th:src="@{'/img/' + ${producto.img_prod}}" class="lproduct-img" th:alt="${producto.nombre_prod}">
         <div class="card-body">
           <h5 class="card-title" th:text="${producto.nombre_prod}"></h5>
@@ -55,7 +55,6 @@
           </tr>
           </thead>
           <tbody id="cart-items">
-          <!-- Cart items will be added here dynamically -->
           </tbody>
           <tfoot>
           <tr>
@@ -64,6 +63,11 @@
           </tr>
           </tfoot>
         </table>
+          <div class="d-flex justify-content-end mt-3">
+              <button class="btn btn-primary" onclick="generarCompra()">
+                  Generar Compra
+              </button>
+          </div>
       </div>
     </div>
   </div>
