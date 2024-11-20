@@ -5,9 +5,101 @@
 </head>
 <body>
 <header th:replace="~{admin/dashboard::header}"></header>
-<h1>Home Admin</h1>
-<div class="container-fluid" layout:fragment="page-content">
+<div class="container-fluid d-flex" layout:fragment="page-content">
+
+  <!-- Contenido principal -->
+  <div class="container mt-5">
+    <div class="row">
+      <!-- Card Usuario -->
+      <div class="col-md-4 mb-4">
+        <div class="card text-white bg-primary">
+          <div class="card-header">
+            Usuario
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Perfil del Usuario</h5>
+            <p class="card-text">Accede al perfil del usuario donde podrás ver, registrar, editar o eliminar la información de los usuarios.</p>
+            <a th:href="@{/admin/usuarios}" class="btn btn-light">Ver Usuarios</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Producto -->
+      <div class="col-md-4 mb-4">
+        <div class="card text-white bg-success">
+          <div class="card-header">
+            Producto
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Productos</h5>
+            <p class="card-text">Gestiona los productos de ropa y accesorios disponibles en la tienda. Ver, registrar o actualizar productos.</p>
+            <a th:href="@{/admin/productos}" class="btn btn-light">Ver Productos</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Marca -->
+      <div class="col-md-4 mb-4">
+        <div class="card text-white bg-info">
+          <div class="card-header">
+            Marca
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Marcas Disponibles</h5>
+            <p class="card-text">Consulta y gestiona las marcas que ofrecemos en la tienda. Ver, registrar o modificar marcas.</p>
+            <a th:href="@{/admin/marcas}" class="btn btn-light">Ver Marcas</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Card Categoria -->
+      <div class="col-md-4 mb-4">
+        <div class="card text-white bg-warning">
+          <div class="card-header">
+            Categoría
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Categorías de Productos</h5>
+            <p class="card-text">Gestiona las categorías de productos disponibles en tu tienda. Ver, agregar o modificar categorías.</p>
+            <a th:href="@{/admin/categorias}" class="btn btn-light">Ver Categorías</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Vista de Reclamos -->
+      <div class="col-md-4 mb-4">
+        <div class="card text-white bg-danger">
+          <div class="card-header">
+            Vista de Reclamos
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Gestión de Reclamos</h5>
+            <p class="card-text">Accede a los reclamos realizados por los clientes para gestionarlos de forma adecuada.</p>
+            <a th:href="@{/admin/lista_reclamaciones}" class="btn btn-light">Ver Reclamos</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card Vista de Ventas -->
+      <div class="col-md-4 mb-4">
+        <div class="card text-white bg-dark">
+          <div class="card-header">
+            Vista de Ventas
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Compras Realizadas por el Usuario</h5>
+            <p class="card-text">Consulta el historial de compras realizadas por los usuarios, mostrando detalles de cada compra hecha.</p>
+            <a th:href="@{/admin/ventas}" class="btn btn-light">Ver Ventas</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
+
 <th:block layout:fragment="page-scripts">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
           integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
