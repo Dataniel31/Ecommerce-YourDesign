@@ -32,7 +32,7 @@ function addToCart(producto, cantidad) {
 
 // Update cart table
 function updateCartTable() {
-    cartItems.innerHTML = ''; // Limpia el contenido de la tabla
+    cartItems.innerHTML = '';
     let total = 0;
 
     cart.forEach(item => {
@@ -44,10 +44,7 @@ function updateCartTable() {
         tr.innerHTML = `
             <td>${item.nombre}</td>
             <td>S/. ${item.precio.toFixed(2)}</td>
-            <td>
-                <input type="number" class="form-control form-control-sm" value="${item.cantidad}" min="1" max="99"
-                    onchange="updateQuantity('${item.productoId}', this.value)">
-            </td>
+            <td>${item.cantidad}</td>
             <td>S/. ${subtotal.toFixed(2)}</td>
             <td>
                 <button class="btn btn-danger btn-sm" onclick="removeFromCart('${item.productoId}')">
@@ -63,22 +60,6 @@ function updateCartTable() {
     cartTotal.textContent = `S/. ${total.toFixed(2)}`;
 }
 
-// Actualiza la cantidad de un producto
-function updateQuantity(productoId, nuevaCantidad) {
-    nuevaCantidad = parseInt(nuevaCantidad, 10);
-
-    // Valida la cantidad y actualiza el carrito
-    if (nuevaCantidad > 0) {
-        cart.forEach(item => {
-            if (item.productoId === productoId) {
-                item.cantidad = nuevaCantidad;
-            }
-        });
-        updateCartTable(); // Vuelve a renderizar la tabla
-    } else {
-        alert('La cantidad debe ser mayor que cero');
-    }
-}
 
 // Elimina un producto del carrito
 function removeFromCart(productoId) {
@@ -94,51 +75,80 @@ function clearCart() {
     updateCartTable(); // Vuelve a renderizar la tabla
 }
 
-// Generate purchase
+// Mostrar confirmación usando SweetAlert2
 function generarCompra() {
     if (cart.length === 0) {
-        alert('El carrito está vacío');
+        Swal.fire({
+            icon: 'warning',
+            title: 'Carrito vacío',
+            text: 'El carrito está vacío, agrega productos para continuar.',
+            confirmButtonText: 'Aceptar'
+        });
         return;
     }
 
-    const compraDTO = {
-        detalles: cart.map(item => ({
-            productoId: item.productoId,
-            cantidad: item.cantidad,
-            precioUnitario: item.precio,
-            subtotal: item.precio * item.cantidad
-        })),
-        total: cart.reduce((total, item) => total + (item.precio * item.cantidad), 0)
-    };
+    // Confirmación de compra con SweetAlert2
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: '¿Quieres continuar con la compra?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, continuar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Crear el DTO de la compra
+            const compraDTO = {
+                detalles: cart.map(item => ({
+                    productoId: item.productoId,
+                    cantidad: item.cantidad,
+                    precioUnitario: item.precio,
+                    subtotal: item.precio * item.cantidad
+                })),
+                total: cart.reduce((total, item) => total + (item.precio * item.cantidad), 0)
+            };
 
-    fetch('/api/compras/realizar', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(compraDTO)
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Error al realizar la compra');
-        }
-        return response.json();
-    })
-    .then(data => {
-        alert('Compra realizada con éxito');
-        cart = [];
-        updateCartCounter();
-        updateCartTable();
-        cartModal.style.display = 'none';
-    })
-    .catch(error => {
-        if (error.message === 'Unauthorized') {
-            window.location.href = '/login';
-        } else {
-            alert(error.message);
+            // Enviar la compra al servidor
+            fetch('/api/compras/realizar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(compraDTO)
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Compra exitosa
+                    Swal.fire({
+                        title: '¡Compra exitosa!',
+                        text: 'Tu compra ha sido procesada con éxito.',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    }).then(() => {
+                        // Limpiar el carrito
+                        clearCart();
+                        location.reload();
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Hubo un error al procesar la compra. Intenta nuevamente.',
+                        confirmButtonText: 'Aceptar'
+                    });
+                }
+            });
         }
     });
 }
+
+// Limpiar el carrito
+function clearCart() {
+    cart = []; // Vaciar el carrito
+    updateCartCounter();
+    updateCartTable(); // Volver a renderizar la tabla
+}
+
 
 // Event listeners
 document.addEventListener('DOMContentLoaded', () => {
