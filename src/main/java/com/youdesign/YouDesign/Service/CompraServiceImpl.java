@@ -1,5 +1,6 @@
 package com.youdesign.YouDesign.Service;
 
+import com.itextpdf.text.*;
 import com.youdesign.YouDesign.Dto.Compradto;
 import com.youdesign.YouDesign.Dto.DetalleCompradto;
 import com.youdesign.YouDesign.Entity.Compra;
@@ -12,8 +13,6 @@ import com.youdesign.YouDesign.Repository.ProductoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.springframework.stereotype.Service;
@@ -74,14 +73,28 @@ public class CompraServiceImpl implements CompraService{
     @Override
     public void generarPDF(Compra compra) throws Exception {
         Document document = new Document();
-        PdfWriter.getInstance(document, new FileOutputStream("compra_" + compra.getId_compra() + ".pdf"));
-
+        String pdfPath = "compra_" + compra.getId_compra() + ".pdf";
+        PdfWriter.getInstance(document, new FileOutputStream(pdfPath));
         document.open();
-        document.add(new Paragraph("Detalle de Compra"));
-        document.add(new Paragraph("Fecha: " + compra.getFechaCompra()));
-        document.add(new Paragraph("Cliente: " + compra.getUsuario().getNombre()));
+        String logoPath = "src/main/resources/static/img/logo.png";
+        Image logo = Image.getInstance(logoPath);
+        logo.scaleToFit(140, 120);
+        logo.setAlignment(Element.ALIGN_CENTER);
+        document.add(logo);
 
+        // Agregar el nombre de la tienda
+        document.add(new Paragraph("Nombre de la Tienda: YouDesign"));
+        document.add(new Paragraph("Fecha de la Compra: " + compra.getFechaCompra()));
+        document.add(new Paragraph("Cliente: " + compra.getUsuario().getNombre()));
+        document.add(new Paragraph(" ")); // Espacio en blanco
+
+        // Crear la tabla de detalles de compra
         PdfPTable table = new PdfPTable(4);
+        table.setWidthPercentage(100);
+        table.setSpacingBefore(10f);
+        table.setSpacingAfter(10f);
+
+        // Agregar encabezados de la tabla
         table.addCell("Producto");
         table.addCell("Cantidad");
         table.addCell("Precio Unitario");
@@ -95,7 +108,14 @@ public class CompraServiceImpl implements CompraService{
         }
 
         document.add(table);
+
         document.add(new Paragraph("Total: " + compra.getTotal()));
+
+        Font font = new Font(Font.FontFamily.HELVETICA, 30, Font.BOLD, BaseColor.RED);
+        Paragraph cancelado = new Paragraph("CANCELADO", font);
+        cancelado.setAlignment(Element.ALIGN_CENTER);
+        document.add(cancelado);
         document.close();
+
     }
 }
