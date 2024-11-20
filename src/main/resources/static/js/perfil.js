@@ -9,7 +9,7 @@ document.getElementById('profileForm').addEventListener('submit', function(event
                 return false;
             }
 
-            if (newPassword.length < 6) {
+            if (newPassword.length < 8) {
                 event.preventDefault();
                 alert('La contraseña debe tener al menos 6 caracteres');
                 return false;

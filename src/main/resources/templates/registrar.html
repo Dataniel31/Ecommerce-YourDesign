@@ -16,6 +16,7 @@
 <button class="back-button" onclick="window.location.href='/'"><img src="img/volver.png" width="50" height="50"></button>
 <form th:action="@{/registrar}" method="post" th:object="${usuario}" class="box" id="box">
     <h1>Registro</h1>
+    <div id="alert-container"></div>
     <div th:if=${param.exito}>
         <div class="alert alert-info">Se ha registrado exitosamente a
             la aplicación</div>
@@ -29,6 +30,7 @@
     <h3>¿Ya tienes una cuenta? <a th:href="@{/login}">Ingresa aquí</a></h3>
 </form>
 
+<script th:src="@{/js/registro.js}"></script>
 </body>
 
 </html>
