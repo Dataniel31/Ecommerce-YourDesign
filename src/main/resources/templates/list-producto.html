@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{plantilla}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="~{plantilla::head}">
   <meta charset="UTF-8">
 
@@ -8,7 +8,7 @@
 <header th:replace="~{plantilla::header}">
 
 </header>
-<div class="container my-4" layout:fragment="page-content">
+<div class="container my-4">
   <div class="d-flex justify-content-between align-items-center">
     <h1>Productos</h1>
     <button id="cart-button" class="btn position-relative">
@@ -78,10 +78,8 @@
 </div>
 <footer th:replace="~{plantilla::footer}">
 </footer>
-<th:block layout:fragment="page-scripts">
-  <script th:src="@{/js/producto-user.js}"></script>
-  <script th:src="@{/js/carrito.js}"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
-</th:block>
+<script th:src="@{/js/producto-user.js}"></script>
+<script th:src="@{/js/carrito.js}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.all.min.js"></script>
 </body>
 </html>
