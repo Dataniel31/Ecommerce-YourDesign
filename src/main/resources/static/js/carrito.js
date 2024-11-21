@@ -1,3 +1,4 @@
+// static/js/carrito.js
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 let cartCounter = document.getElementById('cart-counter');
 let cartModal = document.getElementById('cart-modal');
@@ -39,6 +40,7 @@ function updateCartTable() {
         const subtotal = item.precio * item.cantidad;
         total += subtotal;
 
+        // Genera las filas dinámicamente con inputs para modificar la cantidad
         tr.innerHTML = `
             <td>${item.nombre}</td>
             <td>S/. ${item.precio.toFixed(2)}</td>
@@ -54,23 +56,26 @@ function updateCartTable() {
         cartItems.appendChild(tr);
     });
 
+    // Actualiza el total en el DOM
     cartTotal.textContent = `S/. ${total.toFixed(2)}`;
 }
 
 
 // Elimina un producto del carrito
 function removeFromCart(productoId) {
-    cart = cart.filter(item => item.productoId !== productoId);
-    updateCartTable();
+    cart = cart.filter(item => item.productoId !== productoId); // Filtra el producto
+    updateCartCounter();
+    updateCartTable(); // Vuelve a renderizar la tabla
 }
 
 // Vacía el carrito después de realizar la venta
 function clearCart() {
-    cart = [];
+    cart = []; // Vacía el carrito
     updateCartCounter();
-    updateCartTable();
+    updateCartTable(); // Vuelve a renderizar la tabla
 }
 
+// Mostrar confirmación usando SweetAlert2
 function generarCompra() {
     if (cart.length === 0) {
         Swal.fire({
@@ -82,6 +87,7 @@ function generarCompra() {
         return;
     }
 
+    // Confirmación de compra con SweetAlert2
     Swal.fire({
         title: '¿Estás seguro?',
         text: '¿Quieres continuar con la compra?',
@@ -91,6 +97,7 @@ function generarCompra() {
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
+            // Crear el DTO de la compra
             const compraDTO = {
                 detalles: cart.map(item => ({
                     productoId: item.productoId,
@@ -101,6 +108,7 @@ function generarCompra() {
                 total: cart.reduce((total, item) => total + (item.precio * item.cantidad), 0)
             };
 
+            // Enviar la compra al servidor
             fetch('/api/compras/realizar', {
                 method: 'POST',
                 headers: {
@@ -110,12 +118,14 @@ function generarCompra() {
             })
             .then(response => {
                 if (response.ok) {
+                    // Compra exitosa
                     Swal.fire({
                         title: '¡Compra exitosa!',
                         text: 'Tu compra ha sido procesada con éxito.',
                         icon: 'success',
                         confirmButtonText: 'Aceptar'
                     }).then(() => {
+                        // Limpiar el carrito
                         clearCart();
                         location.reload();
                     });
@@ -134,16 +144,18 @@ function generarCompra() {
 
 // Limpiar el carrito
 function clearCart() {
-    cart = [];
+    cart = []; // Vaciar el carrito
     updateCartCounter();
-    updateCartTable();
+    updateCartTable(); // Volver a renderizar la tabla
 }
 
 
+// Event listeners
 document.addEventListener('DOMContentLoaded', () => {
     updateCartCounter();
     updateCartTable();
 
+    // Add to cart buttons
     document.querySelectorAll('.lbtn-primary').forEach(button => {
         button.addEventListener('click', (e) => {
             const card = e.target.closest('.card');
@@ -157,6 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Cart modal
     document.getElementById('cart-button').addEventListener('click', () => {
         cartModal.style.display = 'block';
     });
