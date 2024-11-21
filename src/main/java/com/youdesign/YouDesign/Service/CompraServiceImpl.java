@@ -103,13 +103,13 @@ public class CompraServiceImpl implements CompraService{
         for (DetalleCompra detalle : compra.getDetalles()) {
             table.addCell(detalle.getProducto().getNombre_prod());
             table.addCell(String.valueOf(detalle.getCantidad()));
-            table.addCell(String.valueOf(detalle.getPrecioUnitario()));
-            table.addCell(String.valueOf(detalle.getSubtotal()));
+            table.addCell("S/. "+(detalle.getPrecioUnitario()));
+            table.addCell("S/. "+(detalle.getSubtotal()));
         }
 
         document.add(table);
 
-        document.add(new Paragraph("Total: " + compra.getTotal()));
+        document.add(new Paragraph("Total: S/. " + compra.getTotal()));
 
         Font font = new Font(Font.FontFamily.HELVETICA, 30, Font.BOLD, BaseColor.RED);
         Paragraph cancelado = new Paragraph("CANCELADO", font);

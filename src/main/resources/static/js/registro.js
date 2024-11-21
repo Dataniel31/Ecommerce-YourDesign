@@ -15,9 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const alert = document.createElement("div");
                 alert.className = "alert alert-danger alert-dismissible fade show";
                 alert.setAttribute("role", "alert");
-                alert.innerHTML = `
-                    La contraseña debe tener al menos 8 caracteres.
-                `;
+                alert.innerHTML = `La contraseña debe tener al menos 8 caracteres.`;
                 alertContainer.appendChild(alert);
 
                 passwordInput.focus();

@@ -1,20 +1,36 @@
 document.getElementById('profileForm').addEventListener('submit', function(event) {
-        const newPassword = document.getElementById('newPassword').value;
-        const confirmPassword = document.getElementById('confirmPassword').value;
+    // Limpiar mensajes de error previos
+    document.getElementById('currentPasswordError').textContent = '';
+    document.getElementById('newPasswordError').textContent = '';
+    document.getElementById('confirmPasswordError').textContent = '';
 
-        if (newPassword || confirmPassword) {
-            if (newPassword !== confirmPassword) {
-                event.preventDefault();
-                alert('Las contraseñas nuevas no coinciden');
-                return false;
-            }
+    const currentPassword = document.getElementById('currentPassword').value;
+    const newPassword = document.getElementById('newPassword').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
 
-            if (newPassword.length < 8) {
-                event.preventDefault();
-                alert('La contraseña debe tener al menos 8 caracteres');
-                return false;
-            }
+    let isValid = true;
+
+    if (newPassword || confirmPassword) {
+        if (newPassword !== confirmPassword) {
+            document.getElementById('confirmPasswordError').textContent =
+                'Las contraseñas nuevas no coinciden.';
+            isValid = false;
         }
 
-        return true;
+        if (newPassword.length < 8) {
+            document.getElementById('newPasswordError').textContent =
+                'La contraseña debe tener al menos 8 caracteres.';
+            isValid = false;
+        }
+
+        if (currentPassword === newPassword) {
+            document.getElementById('newPasswordError').textContent =
+                'La contraseña nueva no puede ser igual a la contraseña actual.';
+            isValid = false;
+        }
+    }
+
+    if (!isValid) {
+        event.preventDefault();
+    }
 });
