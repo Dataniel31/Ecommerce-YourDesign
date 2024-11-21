@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head th:fragment="head">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${pageTitle}">Titulo por defecto</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
     <link rel="icon" th:href="@{/img/logo.png}" type="image/x-icon">
@@ -13,144 +14,156 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/poke.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/carrito.css}">
 </head>
+
 <body>
-<header th:fragment="header">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <!-- Logo de la empresa -->
-            <a class="navbar-brand" th:href="@{/}">
-                <img th:src="@{/img/logo.png}" alt="Logo" style="height: 40px;">
-            </a>
+    <header th:fragment="header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <!-- Logo de la empresa -->
+                <a class="navbar-brand" th:href="@{/}">
+                    <img th:src="@{/img/logo.png}" alt="Logo" style="height: 40px;">
+                </a>
 
-            <!-- Botón para colapsar el menú en pantallas pequeñas -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                <!-- Botón para colapsar el menú en pantallas pequeñas -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <!-- Páginas de navegación -->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" th:href="@{/}">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" th:href="@{/nosotros}">Nosotros</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Categorias
-                        </a>
-                        <ul class="dropdown-menu bg-dark">
-                            <li><a class="nav-link dropdown-item" th:href="@{/productos}">Todos los productos</a></li>
-                            <li><a th:each="categoria : ${categoria}" class="nav-link dropdown-item" th:href="@{'/productos/' + ${categoria.id_cate}}" th:text="${categoria.nombre}"></a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" th:href="@{/contacto}">Contacto</a>
-                    </li>
-                </ul>
-
-                <div id="navbar" class="collapse navbar-collapse">
-                    <ul class="navbar-nav ms-auto">
-                        <li sec:authorize="!isAuthenticated()" class="nav-item">
-                            <a class="btn btn-outline-light" th:href="@{/login}">Login</a>
-                            <a class="btn btn-outline-light" th:href="@{/registrar}">Registrar</a>
+                <!-- Páginas de navegación -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" th:href="@{/}">Inicio</a>
                         </li>
-                        <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
-                            <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <i class="bi bi-person-circle me-2"></i><span sec:authentication="principal.username"></span> </a>
-                            <ul class="dropdown-menu">
-                                <a class="btn btn-outline-light dropdown-item text-center" th:href="@{/perfil}">
-                                    <div class="poke-div">
-                                        <img th:src="${pokemon.imageUrl}" alt="Pokemon" class="poke-img">
-                                    </div>
-                                    <div class="perfil-texto">
-                                        <p>Perfil</p>
-                                    </div>
-                                </a>
-                                <a class="btn btn-outline-light dropdown-item" th:href="@{/admin/home}" sec:authorize="hasAuthority('Administrador')">Dashboard Admin</a>
-                                <a class="btn btn-outline-light dropdown-item" th:href="@{/logout}">Cerrar Sesión</a>
+                        <li class="nav-item">
+                            <a class="nav-link active" th:href="@{/nosotros}">Nosotros</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Categorias
+                            </a>
+                            <ul class="dropdown-menu bg-dark">
+                                <li><a class="nav-link dropdown-item" th:href="@{/productos}">Todos los productos</a>
+                                </li>
+                                <li><a th:each="categoria : ${categoria}" class="nav-link dropdown-item"
+                                        th:href="@{'/productos/' + ${categoria.id_cate}}"
+                                        th:text="${categoria.nombre}"></a></li>
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" th:href="@{/contacto}">Contacto</a>
+                        </li>
+                    </ul>
 
+                    <div id="navbar" class="collapse navbar-collapse">
+                        <ul class="navbar-nav ms-auto">
+                            <li sec:authorize="!isAuthenticated()" class="nav-item">
+                                <a class="btn btn-outline-light" th:href="@{/login}">Login</a>
+                                <a class="btn btn-outline-light" th:href="@{/registrar}">Registrar</a>
+                            </li>
+                            <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+                                <a class="btn btn-outline-light dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false"> <i
+                                        class="bi bi-person-circle me-2"></i><span
+                                        sec:authentication="principal.username"></span> </a>
+                                <ul class="dropdown-menu">
+                                    <a class="btn btn-outline-light dropdown-item text-center" th:href="@{/perfil}">
+                                        <div class="poke-div">
+                                            <img th:src="${pokemon.imageUrl}" alt="Pokemon" class="poke-img">
+                                        </div>
+                                        <div class="perfil-texto">
+                                            <p>Perfil</p>
+                                        </div>
+                                    </a>
+                                    <a class="btn btn-outline-light dropdown-item" th:href="@{/admin/home}"
+                                        sec:authorize="hasAuthority('Administrador')">Dashboard Admin</a>
+                                    <a class="btn btn-outline-light dropdown-item" th:href="@{/logout}">Cerrar
+                                        Sesión</a>
+                                </ul>
+
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+    </header>
+    <div class="container">
+
+    </div>
+    <footer th:fragment="footer" class="bg-dark text-white text-center">
+        <div class="container py-4">
+            <div class="row">
+
+                <!-- Sección de Redes Sociales -->
+                <div class="col-md-4 mb-3">
+                    <h5 class="mb-4">Síguenos en</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white text-decoration-none">Facebook</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Twitter</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Instagram</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">LinkedIn</a></li>
+                    </ul>
+                </div>
+
+                <!-- Sección de Libro de Reclamaciones -->
+                <div class="col-md-4 mb-3">
+                    <h5 class="mb-4">Libro de Reclamaciones</h5>
+                    <p>Si tienes algún problema o reclamo, por favor infórmanos a través de nuestro <br><a
+                            th:href="@{/lreclamaciones}" class="text-white text-decoration-none">Libro
+                            de Reclamaciones</a>.</p>
+                </div>
+
+                <!-- Sección de Contacto y Otros Datos -->
+                <div class="col-md-4 mb-3">
+                    <h5 class="mb-4">Contacto</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="bi bi-envelope"></i> <a href="mailto:mesadeayuda@youdesign.com"
+                                class="text-white text-decoration-none">mesadeayuda@youdesign.com</a>
+                        </li>
+                        <li><i class="bi bi-telephone"></i> (+51) 902 658 227</li>
+                        <li><i class="bi bi-geo-alt"></i> Las Fresias 128, Lima 15023, Perú</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <hr class="bg-white">
+
+            <!-- Sección de Términos y Condiciones, Política de Privacidad -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <ul class="list-unstyled d-flex">
+                        <li class="mx-2">
+                            <a th:href="@{/terminosycondiciones}" class="text-white text-decoration-none">Términos y
+                                Condiciones</a>
+                        </li>
+                        <li class="mx-2">
+                            <span class="text-white">|</span>
+                        </li>
+                        <li class="mx-2">
+                            <a th:href="@{/politicaprivacidad}" class="text-white text-decoration-none">Política de
+                                Privacidad</a>
                         </li>
                     </ul>
                 </div>
+
+                <!-- Sección de Derechos Reservados -->
+                <div class="col-md-6 text-md-right">
+                    <p class="mb-0">© 2024 YouDesign. Todos los derechos reservados.</p>
+                </div>
             </div>
         </div>
-    </nav>
-
-</header>
-<div class="container">
-
-</div>
-<footer th:fragment="footer" class="bg-dark text-white text-center">
-    <div class="container py-4">
-        <div class="row">
-
-            <!-- Sección de Redes Sociales -->
-            <div class="col-md-4 mb-3">
-                <h5 class="mb-4">Síguenos en</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#" class="text-white text-decoration-none">Facebook</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Twitter</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Instagram</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">LinkedIn</a></li>
-                </ul>
-            </div>
-
-            <!-- Sección de Libro de Reclamaciones -->
-            <div class="col-md-4 mb-3">
-                <h5 class="mb-4">Libro de Reclamaciones</h5>
-                <p>Si tienes algún problema o reclamo, por favor infórmanos a través de nuestro <br><a th:href="@{/lreclamaciones}"
-                                                                                                   class="text-white text-decoration-none">Libro
-                    de Reclamaciones</a>.</p>
-            </div>
-
-            <!-- Sección de Contacto y Otros Datos -->
-            <div class="col-md-4 mb-3">
-                <h5 class="mb-4">Contacto</h5>
-                <ul class="list-unstyled">
-                    <li><i class="bi bi-envelope"></i> <a href="mailto:mesadeayuda@youdesign.com"
-                                                          class="text-white text-decoration-none">mesadeayuda@youdesign.com</a>
-                    </li>
-                    <li><i class="bi bi-telephone"></i> (+51) 902 658 227</li>
-                    <li><i class="bi bi-geo-alt"></i> Las Fresias 128, Lima 15023, Perú</li>
-                </ul>
-            </div>
-
-        </div>
-
-        <hr class="bg-white">
-
-        <!-- Sección de Términos y Condiciones, Política de Privacidad -->
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <ul class="list-unstyled d-flex">
-                    <li class="mx-2">
-                        <a th:href="@{/terminosycondiciones}" class="text-white text-decoration-none">Términos y
-                            Condiciones</a>
-                    </li>
-                    <li class="mx-2">
-                        <span class="text-white">|</span>
-                    </li>
-                    <li class="mx-2">
-                        <a th:href="@{/politicaprivacidad}" class="text-white text-decoration-none">Política de Privacidad</a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Sección de Derechos Reservados -->
-            <div class="col-md-6 text-md-right">
-                <p class="mb-0">© 2024 YouDesign. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </div>
-    <script th:src="@{/js/home.js}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        <script th:src="@{/js/home.js}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
-</footer>
+    </footer>
 
 
 </body>
+
 </html>

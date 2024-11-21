@@ -4,41 +4,47 @@
 <head th:replace="~{plantilla::head}">
     <meta charset="UTF-8">
 </head>
+
 <body class="body-fondo">
-<header th:replace="~{plantilla::header}">
+    <header th:replace="~{plantilla::header}">
 
-</header>
-<!-- Formulario -->
-<div class="container mt-4">
-    <h1 class="text-center">Libro de reclamaciones</h1>
-    <hr>
-    <div class="container-fluid">
-        <form th:action="@{/lreclamaciones}" method="post">
-            <div class="mb-3">
-                <label for="nombreCompleto" class="form-label">Nombre Completo</label>
-                <input type="text" class="form-control" id="nombreCompleto" name="nombreCompleto" th:value="${usuario.nombre}" readonly>
-            </div>
-            <div class="mb-3">
-                <label for="correoElectronico" class="form-label">Correo Electrónico</label>
-                <input type="email" class="form-control" id="correoElectronico" name="correoElectronico" th:value="${usuario.email}" readonly>
-            </div>
-            <div class="mb-3">
-                <label for="asunto" class="form-label">Asunto</label>
-                <input type="text" class="form-control" id="asunto" name="asunto" placeholder="Asunto de tu reclamación" required>
-            </div>
-            <div class="mb-3">
-                <label for="mensaje" class="form-label">Mensaje</label>
-                <textarea class="form-control" id="mensaje" name="mensaje" rows="4" placeholder="Detalles de tu reclamación" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Enviar</button>
-        </form>
-        <p th:text="${mensajeConfirmacion}" class="mensaje-confirmacion"></p>
+    </header>
+    <!-- Formulario -->
+    <div class="container mt-4">
+        <h1 class="text-center">Libro de reclamaciones</h1>
+        <hr>
+        <div class="container-fluid">
+            <form th:action="@{/lreclamaciones}" method="post">
+                <div class="mb-3">
+                    <label for="nombreCompleto" class="form-label">Nombre Completo</label>
+                    <input type="text" class="form-control" id="nombreCompleto" name="nombreCompleto"
+                        th:value="${usuario.nombre}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="correoElectronico" class="form-label">Correo Electrónico</label>
+                    <input type="email" class="form-control" id="correoElectronico" name="correoElectronico"
+                        th:value="${usuario.email}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="asunto" class="form-label">Asunto</label>
+                    <input type="text" class="form-control" id="asunto" name="asunto"
+                        placeholder="Asunto de tu reclamación" required>
+                </div>
+                <div class="mb-3">
+                    <label for="mensaje" class="form-label">Mensaje</label>
+                    <textarea class="form-control" id="mensaje" name="mensaje" rows="4"
+                        placeholder="Detalles de tu reclamación" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+            <p th:text="${mensajeConfirmacion}" class="mensaje-confirmacion"></p>
+        </div>
     </div>
-</div>
-<br>
-<footer th:replace="~{plantilla::footer}">
+    <br>
+    <footer th:replace="~{plantilla::footer}">
 
-</footer>
+    </footer>
 
 </body>
+
 </html>

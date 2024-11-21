@@ -51,8 +51,7 @@ public class UsuarioServiceImpl implements UsuarioService {
                 registrodto.getDireccion(),
                 registrodto.getEmail(),
                 passwordEncoder.encode(registrodto.getPassword()),
-                rolUsuario
-        );
+                rolUsuario);
         return usuarioRepository.save(usuario);
     }
 
@@ -69,13 +68,12 @@ public class UsuarioServiceImpl implements UsuarioService {
                 registrodto.getDireccion(),
                 registrodto.getEmail(),
                 passwordEncoder.encode(registrodto.getPassword()),
-                rolUsuario
-        );
+                rolUsuario);
         return usuarioRepository.save(usuario);
     }
 
     @Override
-    public Usuario updateUsuario(Long id ,UsuarioRegistrodto registrodto, Rol rol) {
+    public Usuario updateUsuario(Long id, UsuarioRegistrodto registrodto, Rol rol) {
         Optional<Usuario> usuarioOpt = usuarioRepository.findById(id);
         if (usuarioOpt.isPresent()) {
             Usuario usuario = usuarioOpt.get();

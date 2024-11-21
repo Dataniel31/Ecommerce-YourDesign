@@ -8,9 +8,12 @@ import com.youdesign.YouDesign.Repository.CategoriaRepository;
 
 import java.util.List;
 
-public interface ProductoService{
+public interface ProductoService {
     Producto save(Productodto productodto, Marca marca, Categoria categoria);
+
     Producto update(Long id, Productodto productodto, Marca marca, Categoria categoria);
+
     void delete(Long id_producto);
+
     List<Producto> findByCate(Categoria cate);
 }

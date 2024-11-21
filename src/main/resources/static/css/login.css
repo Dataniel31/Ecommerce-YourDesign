@@ -83,6 +83,7 @@ body {
     font-weight: bold;
     font-style: italic;
 }
+
 /*boton volver*/
 .back-button {
     background-color: #000000;
@@ -98,6 +99,7 @@ body {
     background-color: #333333;
     border-color: #333333;
 }
+
 /*imagen*/
 body {
     background-image: url('/img/fondoropa.jpg');

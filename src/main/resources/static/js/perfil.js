@@ -1,4 +1,4 @@
-document.getElementById('profileForm').addEventListener('submit', function(event) {
+document.getElementById('profileForm').addEventListener('submit', function (event) {
     // Limpiar mensajes de error previos
     document.getElementById('currentPasswordError').textContent = '';
     document.getElementById('newPasswordError').textContent = '';

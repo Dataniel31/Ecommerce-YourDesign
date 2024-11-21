@@ -1,6 +1,5 @@
 package com.youdesign.YouDesign.Dto;
 
-
 import org.springframework.web.multipart.MultipartFile;
 
 public class Productodto {

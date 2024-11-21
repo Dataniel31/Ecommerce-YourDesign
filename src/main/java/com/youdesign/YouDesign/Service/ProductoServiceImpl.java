@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductoServiceImpl implements ProductoService{
+public class ProductoServiceImpl implements ProductoService {
     @Autowired
     private MarcaRepository marcaRepository;
     @Autowired
@@ -41,23 +41,23 @@ public class ProductoServiceImpl implements ProductoService{
             cateprod = new Categoria(categoria.getNombre());
             categoriaRepository.save(cateprod);
         }
-        //guardar imagen
+        // guardar imagen
         MultipartFile img = productodto.getImg_prod();
         Date createdAt = new Date();
-        String storageFileName = createdAt.getTime()+ "_" +img.getOriginalFilename();
-        try{
+        String storageFileName = createdAt.getTime() + "_" + img.getOriginalFilename();
+        try {
             String uploadDir = "src/main/resources/static/img/";
             Path uploadPath = Paths.get(uploadDir);
 
-            if (!Files.exists(uploadPath)){
+            if (!Files.exists(uploadPath)) {
                 Files.createDirectories(uploadPath);
             }
-            try (InputStream inputStream = img.getInputStream()){
+            try (InputStream inputStream = img.getInputStream()) {
                 Files.copy(inputStream, Paths.get(uploadDir + storageFileName),
                         StandardCopyOption.REPLACE_EXISTING);
             }
-        } catch (Exception ex){
-            System.out.println("Exception: "+ex.getMessage());
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex.getMessage());
         }
         Producto producto = new Producto();
         producto.setNombre_prod(productodto.getNombre_prod());
@@ -106,7 +106,6 @@ public class ProductoServiceImpl implements ProductoService{
         }
     }
 
-
     @Override
     public void delete(Long id_producto) {
         try {
@@ -115,15 +114,13 @@ public class ProductoServiceImpl implements ProductoService{
             Path imgPath = Paths.get("src/main/resources/static/img/" + producto.getImg_prod());
             try {
                 Files.delete(imgPath);
-            }
-            catch (Exception ex){
+            } catch (Exception ex) {
                 System.out.println("Exception: " + ex.getMessage());
             }
 
             productoRepository.deleteById(id_producto);
-        }
-        catch (Exception ex){
-            System.out.println("Exception "+ex.getMessage());
+        } catch (Exception ex) {
+            System.out.println("Exception " + ex.getMessage());
         }
 
     }

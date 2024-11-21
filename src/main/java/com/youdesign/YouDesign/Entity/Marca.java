@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name="marca")
+@Table(name = "marca")
 public class Marca {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,7 +47,6 @@ public class Marca {
     public void setImg_marca(String img_marca) {
         this.img_marca = img_marca;
     }
-
 
     public Marca(String nombre) {
         this.nombre = nombre;

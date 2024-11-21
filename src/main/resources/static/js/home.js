@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     groupedItems.push(item);
   }
 
-  groupedItems.forEach(function(group) {
+  groupedItems.forEach(function (group) {
     carouselInner.appendChild(group);
   });
 });

@@ -25,7 +25,7 @@ public class VentaAdminController {
     private UsuarioRepository usuarioRepository;
 
     @GetMapping
-    public String MostrarVentas (Model model){
+    public String MostrarVentas(Model model) {
         model.addAttribute("pageTitle", "Lista de Ventas");
         List<Usuario> usuario = usuarioRepository.findAll();
         model.addAttribute("usuario", usuario);

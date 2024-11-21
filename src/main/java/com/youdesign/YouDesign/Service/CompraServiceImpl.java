@@ -23,7 +23,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class CompraServiceImpl implements CompraService{
+public class CompraServiceImpl implements CompraService {
     @Autowired
     private CompraRepository compraRepository;
     @Autowired
@@ -103,8 +103,8 @@ public class CompraServiceImpl implements CompraService{
         for (DetalleCompra detalle : compra.getDetalles()) {
             table.addCell(detalle.getProducto().getNombre_prod());
             table.addCell(String.valueOf(detalle.getCantidad()));
-            table.addCell("S/. "+(detalle.getPrecioUnitario()));
-            table.addCell("S/. "+(detalle.getSubtotal()));
+            table.addCell("S/. " + (detalle.getPrecioUnitario()));
+            table.addCell("S/. " + (detalle.getSubtotal()));
         }
 
         document.add(table);

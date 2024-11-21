@@ -1,6 +1,5 @@
 package com.youdesign.YouDesign.Controller;
 
-
 import com.youdesign.YouDesign.Dto.UsuarioRegistrodto;
 import com.youdesign.YouDesign.Service.UsuarioService;
 import org.springframework.stereotype.Controller;
@@ -16,17 +15,19 @@ public class RegistroController {
     public RegistroController(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
     }
+
     @ModelAttribute("usuario")
-    public UsuarioRegistrodto retornarnuevousuarioRegistrodto(){
+    public UsuarioRegistrodto retornarnuevousuarioRegistrodto() {
         return new UsuarioRegistrodto();
     }
+
     @GetMapping("/registrar")
-    public String MostrarRegistro( ) {
+    public String MostrarRegistro() {
         return "registrar";
     }
 
     @PostMapping("/registrar")
-    public String registrarCuentaDeUsuaro(@ModelAttribute("usuario") UsuarioRegistrodto registrodto){
+    public String registrarCuentaDeUsuaro(@ModelAttribute("usuario") UsuarioRegistrodto registrodto) {
         usuarioService.save(registrodto);
         return "redirect:/registrar?exito";
     }

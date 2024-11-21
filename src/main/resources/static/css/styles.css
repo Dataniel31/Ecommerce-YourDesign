@@ -9,6 +9,7 @@
     height: 100vh;
     width: 100%;
 }
+
 #carousel-principal .carousel-inner {
     height: 800px;
 }
@@ -49,16 +50,19 @@
     font-size: 1.2em;
 }
 
-.btn:focus, .btn:active {
+.btn:focus,
+.btn:active {
     outline: none;
     box-shadow: none;
 }
 
-.product-item, .brand-item {
+.product-item,
+.brand-item {
     margin-bottom: 30px;
 }
 
-.product-btn, .brand-btn {
+.product-btn,
+.brand-btn {
     display: block;
     background-color: white;
     border: none;
@@ -67,7 +71,8 @@
     text-align: center;
 }
 
-.product-img, .brand-img {
+.product-img,
+.brand-img {
     width: 150px;
     height: 150px;
     object-fit: cover;
@@ -75,7 +80,8 @@
     margin-bottom: 10px;
 }
 
-.product-btn p, .brand-btn p {
+.product-btn p,
+.brand-btn p {
     margin: 0;
     font-size: 1.2em;
 }
@@ -114,7 +120,8 @@
     padding: 0;
     font-size: 1.1em;
 }
-#carousel-marcas .carousel-inner{
+
+#carousel-marcas .carousel-inner {
     height: 150px;
 }
 
@@ -135,6 +142,7 @@
 #carousel-marcas {
     margin-top: 50px;
 }
+
 .mensaje-confirmacion {
     text-align: center;
     color: green;
@@ -143,45 +151,45 @@
 }
 
 .cart-modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
 }
 
 .cart-content {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 2rem;
-  border-radius: 8px;
-  width: 90%;
-  max-width: 800px;
-  max-height: 80vh;
-  overflow-y: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 #cart-button {
-  background: none;
-  border: none;
-  padding: 0.5rem;
+    background: none;
+    border: none;
+    padding: 0.5rem;
 }
 
 #cart-button:hover {
-  color: #4a90e2;
+    color: #4a90e2;
 }
 
 .cart-item-actions {
-  display: flex;
-  gap: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
 }
 
 .quantity-control {
-  width: 80px;
+    width: 80px;
 }

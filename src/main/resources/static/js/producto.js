@@ -3,47 +3,47 @@ document.addEventListener('DOMContentLoaded', () => {
   const idProductoInput = document.getElementById('id_producto');
 
   document.querySelectorAll('.btnEditar').forEach(button => {
-      button.addEventListener('click', function () {
-          const producto = {
-              id_producto: this.getAttribute('data-id_producto'),
-              nombre_prod: this.getAttribute('data-nombre_prod'),
-              marca: this.getAttribute('data-marca'),
-              categoria: this.getAttribute('data-categoria'),
-              precio: this.getAttribute('data-precio'),
-              stock: this.getAttribute('data-stock'),
-              img_prod: this.getAttribute('data-img_prod')
-          };
-          idProductoInput.value = producto.id_producto;
-          document.getElementById('nombre_prod').value = producto.nombre_prod;
-          document.getElementById('marca').value = producto.marca;
-          document.getElementById('categoria').value = producto.categoria;
-          document.getElementById('precio').value = producto.precio;
-          document.getElementById('stock').value = producto.stock;
+    button.addEventListener('click', function () {
+      const producto = {
+        id_producto: this.getAttribute('data-id_producto'),
+        nombre_prod: this.getAttribute('data-nombre_prod'),
+        marca: this.getAttribute('data-marca'),
+        categoria: this.getAttribute('data-categoria'),
+        precio: this.getAttribute('data-precio'),
+        stock: this.getAttribute('data-stock'),
+        img_prod: this.getAttribute('data-img_prod')
+      };
+      idProductoInput.value = producto.id_producto;
+      document.getElementById('nombre_prod').value = producto.nombre_prod;
+      document.getElementById('marca').value = producto.marca;
+      document.getElementById('categoria').value = producto.categoria;
+      document.getElementById('precio').value = producto.precio;
+      document.getElementById('stock').value = producto.stock;
 
-          productoForm.action = '/admin/productos/editar/' + producto.id_producto;
-          productoForm.method = 'POST';
-      });
+      productoForm.action = '/admin/productos/editar/' + producto.id_producto;
+      productoForm.method = 'POST';
+    });
   });
 
   document.querySelectorAll('.btnEliminar').forEach(button => {
-      button.addEventListener('click', function (event) {
-          event.preventDefault();
-          const url = this.getAttribute('href');
+    button.addEventListener('click', function (event) {
+      event.preventDefault();
+      const url = this.getAttribute('href');
 
-          Swal.fire({
-              title: '¿Estás seguro?',
-              text: "¡No podrás revertir esto!",
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#d33',
-              cancelButtonColor: '#3085d6',
-              confirmButtonText: 'Sí, eliminarlo!'
-          }).then((result) => {
-              if (result.isConfirmed) {
-                  window.location.href = url;
-              }
-          });
+      Swal.fire({
+        title: '¿Estás seguro?',
+        text: "¡No podrás revertir esto!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Sí, eliminarlo!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = url;
+        }
       });
+    });
   });
   document.querySelector('.btnAgregar').addEventListener('click', function () {
     productoForm.reset();

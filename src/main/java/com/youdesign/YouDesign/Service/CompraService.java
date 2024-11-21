@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface CompraService {
     Compra realizarCompra(Compradto compraDTO, Usuario usuario);
+
     List<Compra> obtenerComprasPorUsuario(Usuario usuario);
+
     void generarPDF(Compra compra) throws Exception;
 }
